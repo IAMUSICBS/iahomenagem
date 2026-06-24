@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homenagem em Vídeo · Eternize quem você ama</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c9a227;
+      --gold-light: #e0b84a;
+      --green: #25d366;
+      --bg: #0a0a0a;
+      --card: #111111;
+      --border: #2a2a2a;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Stars background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 5%, rgba(255,255,255,.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 70%, rgba(255,255,255,.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 55%, rgba(255,255,255,.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 85%, rgba(255,255,255,.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 80%, rgba(255,255,255,.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 60%, rgba(255,255,255,.3) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    section { position: relative; z-index: 1; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px 60px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .badge span { font-size: 1rem; }
+
+    #hero h1 {
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      max-width: 700px;
+    }
+
+    #hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    #hero p {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 420px;
+    }
+
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      margin: 36px auto 12px;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 0 60px rgba(201,162,39,.18);
+    }
+
+    .video-thumb img {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+    }
+
+    .play-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px; height: 64px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .2s, background .2s;
+    }
+
+    .play-btn:hover { background: var(--gold-light); transform: translate(-50%,-50%) scale(1.08); }
+
+    .play-btn svg { width: 24px; height: 24px; fill: #000; margin-left: 4px; }
+
+    .video-caption { color: var(--muted); font-size: .88rem; margin-top: 10px; }
+
+    /* ── WHO TO HONOR ── */
+    #quem {
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    #quem h2 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 900;
+      margin-bottom: 32px;
+    }
+
+    .category-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .cat-btn {
+      border: 1.5px solid #3a3a3a;
+      background: transparent;
+      color: #fff;
+      border-radius: 50px;
+      padding: 12px 28px;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 8px;
+      transition: border-color .2s, background .2s, transform .15s;
+    }
+
+    .cat-btn:hover, .cat-btn.active {
+      border-color: var(--gold);
+      background: rgba(201,162,39,.1);
+      transform: translateY(-2px);
+    }
+
+    .cat-btn .heart { font-size: 1rem; }
+
+    /* ── PACKAGES ── */
+    #homenagens {
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    #homenagens h2 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    #homenagens .sub {
+      color: var(--muted);
+      margin-bottom: 44px;
+      font-size: .97rem;
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .pkg-card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+
+    .pkg-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(201,162,39,.15);
+      border-color: var(--gold);
+    }
+
+    .pkg-card.featured {
+      border-color: var(--gold);
+      box-shadow: 0 0 30px rgba(201,162,39,.15);
+    }
+
+    .pkg-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+
+    .pkg-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pkg-thumb .play-btn {
+      width: 52px; height: 52px;
+    }
+
+    .pkg-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+
+    .pkg-body h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .pkg-body .desc {
+      color: var(--muted);
+      font-size: .85rem;
+      margin-bottom: 14px;
+    }
+
+    .features { list-style: none; margin-bottom: 16px; }
+
+    .features li {
+      font-size: .88rem;
+      color: #ccc;
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .features li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 24px;
+      border-radius: 50px;
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: filter .2s, transform .15s;
+      border: none;
+    }
+
+    .btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+
+    .btn-green { background: var(--green); color: #000; width: 100%; }
+
+    .btn-gold { background: var(--gold); color: #000; }
+
+    /* ── SCARCITY ── */
+    #escassez {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .scarcity-box {
+      border: 1.5px solid var(--gold);
+      border-radius: 20px;
+      padding: 50px 30px;
+      max-width: 520px;
+      margin: 0 auto;
+      background: rgba(201,162,39,.04);
+    }
+
+    .scarcity-box .star { font-size: 2rem; margin-bottom: 16px; }
+
+    .scarcity-box h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .scarcity-box p {
+      color: var(--muted);
+      font-size: .97rem;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #depoimentos {
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    #depoimentos h2 {
+      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    #depoimentos .sub { color: var(--muted); margin-bottom: 40px; font-size: .95rem; }
+
+    .testimonials-track {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .testimonials-track::-webkit-scrollbar { height: 4px; }
+    .testimonials-track::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 4px; }
+    .testimonials-track::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+    .testi-card {
+      flex: 0 0 220px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+
+    .testi-card img { width: 100%; display: block; }
+
+    /* ── WA MOCKUP ── */
+    .wa-mock {
+      background: #0b1114;
+      border-radius: 18px;
+      overflow: hidden;
+      flex: 0 0 230px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Segoe UI', sans-serif;
+      box-shadow: 0 4px 20px rgba(0,0,0,.5);
+    }
+
+    .wa-header {
+      background: #1f2c34;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .wa-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #3a3a3a;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      color: #aaa;
+      flex-shrink: 0;
+    }
+
+    .wa-header-info { flex: 1; min-width: 0; }
+    .wa-name { font-size: .78rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .wa-status { font-size: .68rem; color: #8696a0; }
+
+    .wa-header-icons { display: flex; gap: 14px; }
+    .wa-header-icons svg { width: 18px; height: 18px; fill: #8696a0; }
+
+    .wa-body {
+      background: #0d1418;
+      flex: 1;
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect fill='%23111b21' width='80' height='80'/%3E%3C/svg%3E");
+    }
+
+    .wa-date-divider {
+      text-align: center;
+      font-size: .65rem;
+      color: #8696a0;
+      background: #1f2c34;
+      border-radius: 8px;
+      padding: 3px 10px;
+      align-self: center;
+      margin: 4px 0;
+    }
+
+    /* sent = right, received = left */
+    .wa-bubble {
+      max-width: 88%;
+      padding: 7px 10px 18px;
+      border-radius: 10px;
+      font-size: .75rem;
+      line-height: 1.45;
+      position: relative;
+      word-break: break-word;
+    }
+
+    .wa-bubble.sent {
+      background: #005c4b;
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+
+    .wa-bubble.recv {
+      background: #1f2c34;
+      color: #e9edef;
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+    }
+
+    .wa-bubble .wa-time {
+      position: absolute;
+      bottom: 4px; right: 8px;
+      font-size: .6rem;
+      color: rgba(255,255,255,.55);
+      display: flex; align-items: center; gap: 3px;
+    }
+
+    .wa-bubble.sent .wa-time { color: #53bdeb; }
+
+    .wa-check { width: 14px; height: 14px; fill: #53bdeb; }
+
+    .wa-video-thumb {
+      width: 100%;
+      aspect-ratio: 9/12;
+      background: linear-gradient(160deg, #1a2a35 0%, #0d1418 100%);
+      border-radius: 8px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      margin-bottom: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wa-video-thumb .play-icon {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .wa-video-thumb .play-icon svg { width: 18px; height: 18px; fill: #fff; margin-left: 2px; }
+
+    .wa-video-thumb .vid-label {
+      font-size: .65rem;
+      color: rgba(255,255,255,.6);
+      margin-top: 8px;
+    }
+
+    .wa-video-thumb .vid-duration {
+      position: absolute;
+      bottom: 6px; left: 8px;
+      font-size: .62rem;
+      color: #fff;
+      background: rgba(0,0,0,.5);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .wa-footer {
+      background: #1f2c34;
+      padding: 8px 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .wa-footer svg { width: 20px; height: 20px; fill: #8696a0; }
+
+    .wa-input-bar {
+      flex: 1;
+      background: #2a3942;
+      border-radius: 20px;
+      padding: 7px 12px;
+      font-size: .72rem;
+      color: #8696a0;
+    }
+
+    /* ── HOW IT WORKS ── */
+    #como {
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    #como h2 {
+      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+      font-weight: 900;
+      margin-bottom: 40px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 20px;
+    }
+
+    .step-num {
+      width: 48px; height: 48px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin: 0 auto 18px;
+    }
+
+    .step p { font-size: .97rem; font-weight: 600; }
+
+    /* ── CTA FINAL ── */
+    #cta-final {
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .cta-box {
+      border: 1.5px solid var(--gold);
+      border-radius: 20px;
+      padding: 60px 30px;
+      max-width: 620px;
+      margin: 0 auto;
+      background: rgba(201,162,39,.04);
+      box-shadow: 0 0 60px rgba(201,162,39,.08);
+    }
+
+    .cta-box h2 {
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .cta-box p { color: var(--muted); margin-bottom: 30px; font-size: .97rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      color: #555;
+      font-size: .82rem;
+      border-top: 1px solid #1a1a1a;
+      position: relative; z-index: 1;
+    }
+
+    /* ── WHATSAPP FAB ── */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      width: 56px; height: 56px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      z-index: 999;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .whatsapp-fab:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37,211,102,.55);
+    }
+
+    .whatsapp-fab svg { width: 30px; height: 30px; fill: #fff; }
+
+    /* ── VIDEO MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal-box {
+      background: #111;
+      border-radius: 16px;
+      padding: 20px;
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px; right: 16px;
+      background: none; border: none;
+      color: #fff; font-size: 1.5rem;
+      cursor: pointer; line-height: 1;
+    }
+
+    .modal-box video {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .modal-placeholder {
+      width: 100%;
+      aspect-ratio: 9/16;
+      background: #1a1a1a;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: .9rem;
+      gap: 10px;
+    }
+
+    .modal-placeholder svg { width: 48px; height: 48px; fill: var(--gold); opacity: .6; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .packages-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─────────────────────────── HERO ─────────────────────────── -->
+<section id="hero">
+  <div class="badge"><span>✨</span> HOMENAGEM EM VÍDEO</div>
+  <h1>Eternize a memória<br><em>de alguém especial</em></h1>
+  <p>Cada detalhe é feito com carinho para criar uma homenagem personalizada e especial.</p>
+
+  <div class="video-thumb" onclick="openModal()">
+    <img src="https://images.unsplash.com/photo-1476041800959-2f6bb412c8ce?w=600&q=80&fit=crop" alt="Prévia da homenagem" />
+    <div class="play-btn">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    </div>
+  </div>
+  <p class="video-caption">Assista ao exemplo e veja como a homenagem fica emocionante.</p>
+</section>
+
+<!-- ─────────────────────────── WHO ─────────────────────────── -->
+<section id="quem">
+  <div class="container">
+    <h2>Quem você gostaria<br>de homenagear?</h2>
+    <div class="category-grid">
+      <button class="cat-btn active" onclick="selectCat(this)"><span class="heart">❤️</span> Pai</button>
+      <button class="cat-btn" onclick="selectCat(this)"><span class="heart">❤️</span> Mãe</button>
+      <button class="cat-btn" onclick="selectCat(this)"><span class="heart">❤️</span> Avós</button>
+      <button class="cat-btn" onclick="selectCat(this)"><span class="heart">❤️</span> Esposo(a)</button>
+      <button class="cat-btn" onclick="selectCat(this)"><span class="heart">❤️</span> Amigo(a)</button>
+      <button class="cat-btn" onclick="selectCat(this)"><span class="heart">❤️</span> Outro familiar</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── PACKAGES ─────────────────────────── -->
+<section id="homenagens">
+  <div class="container">
+    <h2>Escolha sua homenagem</h2>
+    <p class="sub">Selecione a opção que melhor representa a homenagem que você deseja criar.</p>
+
+    <div class="packages-grid">
+
+      <!-- Simples -->
+      <div class="pkg-card">
+        <div class="pkg-thumb" onclick="openModal()">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&q=80&fit=crop" alt="Homenagem Simples" />
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="pkg-body">
+          <h3>Homenagem Simples</h3>
+          <p class="desc">Uma cena emocionante e especial.</p>
+          <ul class="features">
+            <li>Cena especial</li>
+            <li>Abraço especial</li>
+          </ul>
+          <div class="price">R$ 50,00</div>
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20solicitar%20a%20Homenagem%20Simples%20-%20R$50" class="btn btn-green" target="_blank">Solicitar Simples</a>
+        </div>
+      </div>
+
+      <!-- Completa -->
+      <div class="pkg-card featured">
+        <div class="pkg-thumb" onclick="openModal()">
+          <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400&q=80&fit=crop" alt="Homenagem Completa" />
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="pkg-body">
+          <h3>Homenagem Completa</h3>
+          <p class="desc">Uma cena completa com final especial.</p>
+          <ul class="features">
+            <li>Cena de encontro</li>
+            <li>Abraço especial</li>
+            <li>Final especial</li>
+          </ul>
+          <div class="price">R$ 60,00</div>
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20solicitar%20a%20Homenagem%20Completa%20-%20R$60" class="btn btn-green" target="_blank">Solicitar Completa</a>
+        </div>
+      </div>
+
+      <!-- Abraço Especial -->
+      <div class="pkg-card">
+        <div class="pkg-thumb" onclick="openModal()">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80&fit=crop" alt="Abraço Especial" />
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="pkg-body">
+          <h3>Abraço Especial</h3>
+          <p class="desc">Uma homenagem emocionante com uma cena especial e personalizada.</p>
+          <ul class="features">
+            <li>Cena especial de abraço</li>
+            <li>Final especial</li>
+          </ul>
+          <div class="price">R$ 75,00</div>
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20solicitar%20o%20Abraço%20Especial%20-%20R$75" class="btn btn-green" target="_blank">Solicitar Abraço</a>
+        </div>
+      </div>
+
+      <!-- A Dois -->
+      <div class="pkg-card">
+        <div class="pkg-thumb" onclick="openModal()">
+          <img src="https://images.unsplash.com/photo-1500049242364-5f500807cdd7?w=400&q=80&fit=crop" alt="Homenagem a Dois" />
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="pkg-body">
+          <h3>Homenagem a Dois</h3>
+          <p class="desc">Uma homenagem especial criada para duas pessoas.</p>
+          <ul class="features">
+            <li>Cena especial</li>
+            <li>Duas pessoas</li>
+            <li>Final especial</li>
+          </ul>
+          <div class="price">R$ 80,00</div>
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20solicitar%20a%20Homenagem%20a%20Dois%20-%20R$80" class="btn btn-green" target="_blank">Solicitar A Dois</a>
+        </div>
+      </div>
+
+      <!-- Encontro -->
+      <div class="pkg-card">
+        <div class="pkg-thumb" onclick="openModal()">
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&q=80&fit=crop" alt="Homenagem de Encontro" />
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="pkg-body">
+          <h3>Homenagem de Encontro</h3>
+          <p class="desc">Uma homenagem especial com um momento único de encontro.</p>
+          <ul class="features">
+            <li>Cena especial</li>
+            <li>Momento de encontro</li>
+            <li>Final especial</li>
+          </ul>
+          <div class="price">R$ 80,00</div>
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20solicitar%20a%20Homenagem%20de%20Encontro%20-%20R$80" class="btn btn-green" target="_blank">Solicitar Encontro</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── SCARCITY ─────────────────────────── -->
+<section id="escassez">
+  <div class="scarcity-box">
+    <div class="star">✨</div>
+    <h2>Cada homenagem é única</h2>
+    <p>Trabalhamos com uma quantidade limitada de pedidos por dia para que cada homenagem receba a atenção, o cuidado e os detalhes que ela merece.</p>
+    <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20verificar%20a%20disponibilidade" class="btn btn-green" target="_blank">Verificar disponibilidade</a>
+  </div>
+</section>
+
+<!-- ─────────────────────────── TESTIMONIALS ─────────────────────────── -->
+<section id="depoimentos">
+  <div class="container">
+    <h2>O que nossos<br>clientes dizem</h2>
+    <p class="sub">Mensagens reais de famílias que confiaram em nosso trabalho.</p>
+
+    <div class="testimonials-track">
+
+      <!-- Depoimento 1 -->
+      <div class="wa-mock">
+        <div class="wa-header">
+          <div class="wa-avatar">P</div>
+          <div class="wa-header-info">
+            <div class="wa-name">Patrícia Cliente</div>
+            <div class="wa-status">online</div>
+          </div>
+          <div class="wa-header-icons">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          </div>
+        </div>
+        <div class="wa-body">
+          <div class="wa-date-divider">Hoje</div>
+          <div class="wa-bubble sent">
+            <div class="wa-video-thumb">
+              <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+              <span class="vid-label">Vídeo finalizado ✅</span>
+              <span class="vid-duration">0:45</span>
+            </div>
+            Vídeo finalizado ✅<br>Feito com carinho ❤️
+            <span class="wa-time">09:16
+              <svg class="wa-check" viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34-2.83-2.83L6 10.52l4.24 4.24L18 7zm-8 9l-4.24-4.24-1.41 1.41L10 18.83 21.41 7.41 20 6l-10 10z"/></svg>
+            </span>
+          </div>
+          <div class="wa-bubble recv">
+            Ficou muito mais lindo do que eu imaginava.
+            <span class="wa-time">09:22</span>
+          </div>
+          <div class="wa-bubble recv">
+            Meu Deus...
+            <span class="wa-time">09:32</span>
+          </div>
+          <div class="wa-bubble recv">
+            Quando apareceu minha mãe no vídeo eu chorei demais. Mostrei pra minha família e todo mundo chorou aqui em casa. 😭
+            <span class="wa-time">09:33</span>
+          </div>
+        </div>
+        <div class="wa-footer">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          <div class="wa-input-bar">Mensagem</div>
+          <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/></svg>
+        </div>
+      </div>
+
+      <!-- Depoimento 2 -->
+      <div class="wa-mock">
+        <div class="wa-header">
+          <div class="wa-avatar">M</div>
+          <div class="wa-header-info">
+            <div class="wa-name">Maria Cliente</div>
+            <div class="wa-status">visto por último às 22:04</div>
+          </div>
+          <div class="wa-header-icons">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          </div>
+        </div>
+        <div class="wa-body">
+          <div class="wa-date-divider">Hoje</div>
+          <div class="wa-bubble sent">
+            <div class="wa-video-thumb">
+              <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+              <span class="vid-label">Vídeo finalizado ✅</span>
+              <span class="vid-duration">0:25</span>
+            </div>
+            Vídeo finalizado ✅<br>Feito com carinho ❤️
+            <span class="wa-time">21:50
+              <svg class="wa-check" viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34-2.83-2.83L6 10.52l4.24 4.24L18 7zm-8 9l-4.24-4.24-1.41 1.41L10 18.83 21.41 7.41 20 6l-10 10z"/></svg>
+            </span>
+          </div>
+          <div class="wa-bubble recv">
+            Ficou muito mais lindo do que eu imaginava, agradeço ❤️
+            <span class="wa-time">21:56</span>
+          </div>
+          <div class="wa-bubble recv">
+            Chorei muito assistindo, obrigada de coração 🙏
+            <span class="wa-time">21:58</span>
+          </div>
+        </div>
+        <div class="wa-footer">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          <div class="wa-input-bar">Mensagem</div>
+          <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/></svg>
+        </div>
+      </div>
+
+      <!-- Depoimento 3 -->
+      <div class="wa-mock">
+        <div class="wa-header">
+          <div class="wa-avatar">S</div>
+          <div class="wa-header-info">
+            <div class="wa-name">Sandra Cliente</div>
+            <div class="wa-status">online</div>
+          </div>
+          <div class="wa-header-icons">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          </div>
+        </div>
+        <div class="wa-body">
+          <div class="wa-date-divider">Hoje</div>
+          <div class="wa-bubble sent">
+            <div class="wa-video-thumb">
+              <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+              <span class="vid-label">Vídeo finalizado ✅</span>
+              <span class="vid-duration">0:38</span>
+            </div>
+            Vídeo finalizado ✅<br>Feito com carinho ❤️
+            <span class="wa-time">21:33
+              <svg class="wa-check" viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34-2.83-2.83L6 10.52l4.24 4.24L18 7zm-8 9l-4.24-4.24-1.41 1.41L10 18.83 21.41 7.41 20 6l-10 10z"/></svg>
+            </span>
+          </div>
+          <div class="wa-bubble recv">
+            Ficou a cara do meu filho.
+            <span class="wa-time">21:48</span>
+          </div>
+          <div class="wa-bubble recv">
+            Ficou muito bonito.
+            <span class="wa-time">21:48</span>
+          </div>
+          <div class="wa-bubble recv">
+            Vou te indicar pra outras pessoas. 🙏🏼
+            <span class="wa-time">21:48</span>
+          </div>
+        </div>
+        <div class="wa-footer">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          <div class="wa-input-bar">Mensagem</div>
+          <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/></svg>
+        </div>
+      </div>
+
+      <!-- Depoimento 4 -->
+      <div class="wa-mock">
+        <div class="wa-header">
+          <div class="wa-avatar">A</div>
+          <div class="wa-header-info">
+            <div class="wa-name">Ana Cliente</div>
+            <div class="wa-status">online</div>
+          </div>
+          <div class="wa-header-icons">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          </div>
+        </div>
+        <div class="wa-body">
+          <div class="wa-date-divider">Hoje</div>
+          <div class="wa-bubble sent">
+            <div class="wa-video-thumb">
+              <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+              <span class="vid-label">Vídeo finalizado ✅</span>
+              <span class="vid-duration">0:52</span>
+            </div>
+            Vídeo finalizado ✅<br>Feito com carinho ❤️
+            <span class="wa-time">18:44
+              <svg class="wa-check" viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34-2.83-2.83L6 10.52l4.24 4.24L18 7zm-8 9l-4.24-4.24-1.41 1.41L10 18.83 21.41 7.41 20 6l-10 10z"/></svg>
+            </span>
+          </div>
+          <div class="wa-bubble recv">
+            Simplesmente lindo demais! 😭❤️
+            <span class="wa-time">18:51</span>
+          </div>
+          <div class="wa-bubble recv">
+            Minha mãe viu e chorou muito, amou cada detalhe.
+            <span class="wa-time">18:52</span>
+          </div>
+          <div class="wa-bubble recv">
+            Serviço incrível, super recomendo! ⭐⭐⭐⭐⭐
+            <span class="wa-time">18:53</span>
+          </div>
+        </div>
+        <div class="wa-footer">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          <div class="wa-input-bar">Mensagem</div>
+          <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── HOW IT WORKS ─────────────────────────── -->
+<section id="como">
+  <div class="container">
+    <h2>Como funciona</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <p>Escolha sua homenagem.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <p>Envie uma foto pelo WhatsApp.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <p>Receba seu vídeo pronto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── CTA FINAL ─────────────────────────── -->
+<section id="cta-final">
+  <div class="cta-box">
+    <h2>Uma homenagem que ficará para sempre na memória da sua família.</h2>
+    <p>Transforme uma simples fotografia em uma lembrança emocionante.</p>
+    <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20solicitar%20minha%20homenagem" class="btn btn-green" target="_blank">Solicitar minha homenagem</a>
+  </div>
+</section>
+
+<!-- ─────────────────────────── FOOTER ─────────────────────────── -->
+<footer>
+  Homenagens em vídeo personalizadas · Atendimento via WhatsApp
+</footer>
+
+<!-- ─────────────────────────── WA FAB ─────────────────────────── -->
+<a class="whatsapp-fab" href="https://wa.me/5531973387655" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ─────────────────────────── VIDEO MODAL ─────────────────────────── -->
+<div class="modal-overlay" id="videoModal" onclick="closeModalOnOverlay(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-placeholder">
+      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <span>Adicione o link do seu vídeo de demonstração aqui.</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  function selectCat(btn) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function openModal() {
+    document.getElementById('videoModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('videoModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('videoModal')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
