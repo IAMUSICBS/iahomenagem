@@ -892,6 +892,56 @@
 
     .modal-placeholder svg { width: 52px; height: 52px; fill: var(--gold); opacity: .5; }
 
+    /* ── VIDEO PLAYER INLINE ── */
+    .pkg-video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9/16;
+      background: #000;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .pkg-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pkg-video-wrap .vid-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to top, rgba(12,10,20,.7) 0%, rgba(0,0,0,.2) 100%);
+      transition: opacity .3s;
+    }
+
+    .pkg-video-wrap.playing .vid-overlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .pkg-video-wrap .vid-overlay .play-btn {
+      position: static;
+      transform: none;
+    }
+
+    .pkg-video-wrap:hover .vid-overlay .play-btn {
+      transform: scale(1.08);
+    }
+
+    .pkg-video-wrap .vid-label-text {
+      color: rgba(255,255,255,.85);
+      font-size: .78rem;
+      margin-top: 10px;
+      font-weight: 500;
+      letter-spacing: .04em;
+    }
+
     /* ── ANIMATE ON SCROLL ── */
     .fade-up {
       opacity: 0;
@@ -994,10 +1044,21 @@
     <div class="packages-grid">
 
       <div class="pkg-card fade-up">
-        <div class="pkg-thumb" onclick="openModal()">
-          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&q=80&fit=crop" alt="Homenagem Simples" />
-          <div class="pkg-thumb-overlay"></div>
-          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="pkg-video-wrap" id="videoSimples" onclick="playInline(this)">
+          <video
+            id="vidSimples"
+            src="video-simples.mp4"
+            preload="none"
+            playsinline
+            webkit-playsinline
+            x5-playsinline
+            loop
+            poster="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&q=80&fit=crop"
+          ></video>
+          <div class="vid-overlay">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <span class="vid-label-text">▶ Ver exemplo</span>
+          </div>
         </div>
         <div class="pkg-body">
           <h3>Homenagem Simples</h3>
@@ -1378,6 +1439,19 @@
   initStars();
   window.addEventListener('resize', () => { resize(); initStars(); });
   requestAnimationFrame(drawStars);
+
+  // ── Inline video player ──
+  function playInline(wrap) {
+    const vid = wrap.querySelector('video');
+    if (vid.paused) {
+      vid.play().then(() => {
+        wrap.classList.add('playing');
+      }).catch(() => {});
+    } else {
+      vid.pause();
+      wrap.classList.remove('playing');
+    }
+  }
 
   // ── Category buttons ──
   function selectCat(btn) {
