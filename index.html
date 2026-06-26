@@ -1110,22 +1110,33 @@
       </div>
 
       <div class="pkg-card fade-up">
-        <div class="pkg-thumb" onclick="openModal()">
-          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80&fit=crop" alt="Abraço Especial" />
-          <div class="pkg-thumb-overlay"></div>
-          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="pkg-video-wrap" id="videoDespedida" onclick="playInline(this)">
+          <video
+            id="vidDespedida"
+            src="video-despedida.mp4"
+            preload="none"
+            playsinline
+            webkit-playsinline
+            x5-playsinline
+            loop
+            poster="poster-despedida.jpg"
+          ></video>
+          <div class="vid-overlay">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <span class="vid-label-text">▶ Ver exemplo</span>
+          </div>
         </div>
         <div class="pkg-body">
-          <h3>Abraço Especial</h3>
+          <h3>Despedida Especial</h3>
           <p class="desc">Uma homenagem emocionante com uma cena especial e personalizada.</p>
           <ul class="features">
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial de abraço</li>
+            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial de despedida</li>
             <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final especial</li>
           </ul>
           <div class="price">R$ 75,00</div>
-          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20o%20Abraço%20Especial%20-%20R$75" class="btn btn-green" target="_blank">
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Despedida%20Especial%20-%20R$75" class="btn btn-green" target="_blank">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-            Solicitar Abraço
+            Solicitar Despedida
           </a>
         </div>
       </div>
