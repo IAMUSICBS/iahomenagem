@@ -1142,10 +1142,21 @@
       </div>
 
       <div class="pkg-card fade-up">
-        <div class="pkg-thumb" onclick="openModal()">
-          <img src="https://images.unsplash.com/photo-1500049242364-5f500807cdd7?w=400&q=80&fit=crop" alt="Homenagem a Dois" />
-          <div class="pkg-thumb-overlay"></div>
-          <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="pkg-video-wrap" id="videoAdois" onclick="playInline(this)">
+          <video
+            id="vidAdois"
+            src="video-adois.mp4"
+            preload="none"
+            playsinline
+            webkit-playsinline
+            x5-playsinline
+            loop
+            poster="poster-adois.jpg"
+          ></video>
+          <div class="vid-overlay">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <span class="vid-label-text">▶ Ver exemplo</span>
+          </div>
         </div>
         <div class="pkg-body">
           <h3>Homenagem a Dois</h3>
