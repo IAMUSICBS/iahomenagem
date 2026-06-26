@@ -937,7 +937,8 @@
       transition: opacity .3s;
     }
 
-    .pkg-video-wrap.playing .vid-overlay {
+    .pkg-video-wrap.playing .vid-overlay,
+    #videoHero.playing .vid-overlay {
       opacity: 0;
       pointer-events: none;
     }
@@ -1525,6 +1526,13 @@
       wrap.classList.remove('playing');
     }
   }
+
+  // Reexibe overlay ao terminar (se não tiver loop)
+  document.querySelectorAll('.pkg-video-wrap video, #videoHero video').forEach(vid => {
+    vid.addEventListener('ended', () => {
+      vid.closest('.pkg-video-wrap, #videoHero').classList.remove('playing');
+    });
+  });
 
   // ── Category buttons ──
   function selectCat(btn) {
