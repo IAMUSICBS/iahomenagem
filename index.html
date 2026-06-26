@@ -1001,10 +1001,22 @@
     <a href="#como" class="btn btn-outline">Como funciona</a>
   </div>
 
-  <div class="video-thumb" onclick="openModal()">
-    <img src="https://images.unsplash.com/photo-1476041800959-2f6bb412c8ce?w=600&q=80&fit=crop" alt="Prévia da homenagem" />
-    <div class="play-btn">
-      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+  <div class="video-thumb" id="videoHero" onclick="playInline(this)" style="max-width:280px">
+    <video
+      id="vidHero"
+      src="video-despedida.mp4"
+      preload="none"
+      playsinline
+      webkit-playsinline
+      x5-playsinline
+      loop
+      poster="poster-hero.jpg"
+      style="width:100%;display:block;border-radius:24px"
+    ></video>
+    <div class="vid-overlay" style="border-radius:24px">
+      <div class="play-btn" style="position:static;transform:none">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
     </div>
   </div>
   <p class="video-caption">▶ Assista ao exemplo e veja como fica emocionante</p>
