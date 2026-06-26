@@ -661,12 +661,29 @@
       width: 100%;
       aspect-ratio: 9/12;
       background: linear-gradient(160deg, #1a2a35 0%, #0d1418 100%);
+      background-size: cover;
+      background-position: center;
       border-radius: 8px;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       margin-bottom: 4px;
       position: relative;
       overflow: hidden;
+    }
+
+    .wa-video-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.35);
+      border-radius: 8px;
+    }
+
+    .wa-video-thumb .play-icon,
+    .wa-video-thumb .vid-label,
+    .wa-video-thumb .vid-duration {
+      position: relative;
+      z-index: 1;
     }
 
     .wa-video-thumb .play-icon {
@@ -1247,7 +1264,7 @@
         <div class="wa-body">
           <div class="wa-date-divider">Hoje</div>
           <div class="wa-bubble sent">
-            <div class="wa-video-thumb">
+            <div class="wa-video-thumb" style="background-image:url('poster-simples.jpg')">
               <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
               <span class="vid-label">Vídeo finalizado ✅</span>
               <span class="vid-duration">0:45</span>
@@ -1280,7 +1297,7 @@
         <div class="wa-body">
           <div class="wa-date-divider">Hoje</div>
           <div class="wa-bubble sent">
-            <div class="wa-video-thumb">
+            <div class="wa-video-thumb" style="background-image:url('poster-completa.jpg')">
               <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
               <span class="vid-label">Vídeo finalizado ✅</span>
               <span class="vid-duration">0:25</span>
@@ -1313,7 +1330,7 @@
         <div class="wa-body">
           <div class="wa-date-divider">Hoje</div>
           <div class="wa-bubble sent">
-            <div class="wa-video-thumb">
+            <div class="wa-video-thumb" style="background-image:url('poster-despedida.jpg')">
               <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
               <span class="vid-label">Vídeo finalizado ✅</span>
               <span class="vid-duration">0:38</span>
@@ -1346,7 +1363,7 @@
         <div class="wa-body">
           <div class="wa-date-divider">Hoje</div>
           <div class="wa-bubble sent">
-            <div class="wa-video-thumb">
+            <div class="wa-video-thumb" style="background-image:url('poster-adois.jpg')">
               <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
               <span class="vid-label">Vídeo finalizado ✅</span>
               <span class="vid-duration">0:52</span>
