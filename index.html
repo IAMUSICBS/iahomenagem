@@ -3,20 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sempre Presente · Homenagens em Vídeo</title>
+  <title>Sempre Presente · Homenagens em Vídeo Personalizadas</title>
+  <meta name="description" content="Transforme a saudade em uma homenagem em vídeo única e emocionante. Entregamos em até 24h via WhatsApp. Mais de 600 famílias atendidas. A partir de R$50." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://iahomenagem.com.br/" />
+  <meta property="og:title" content="Sempre Presente · Homenagens em Vídeo" />
+  <meta property="og:description" content="Criamos homenagens em vídeo personalizadas para honrar quem você ama. Entrega em até 24h. A partir de R$50." />
+  <meta property="og:image" content="https://iahomenagem.com.br/poster-hero.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#07090f" />
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕊</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --copper: #c87941;
       --copper-light: #e09460;
-      --copper-glow: rgba(200,121,65,.18);
-      --rose: #c97b7b;
       --cream: #f5efe8;
       --muted: #8a8199;
       --bg: #07090f;
-      --bg2: #0b0f1a;
       --card: #0f1424;
       --card2: #131828;
       --border: rgba(200,121,65,.15);
@@ -56,6 +71,12 @@
         linear-gradient(to bottom, rgba(7,9,15,.35) 0%, rgba(7,9,15,.70) 50%, rgba(7,9,15,.92) 100%);
       pointer-events: none;
       z-index: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body::before { opacity: .3; }
+      .fade-up { opacity: 1 !important; transform: none !important; transition: none !important; }
+      canvas#bg-canvas { display: none; }
     }
 
     canvas#bg-canvas {
@@ -109,11 +130,7 @@
       font-family: 'DM Sans', sans-serif;
     }
 
-    .nav-cta:hover {
-      background: var(--copper);
-      color: #fff;
-      border-color: var(--copper);
-    }
+    .nav-cta:hover { background: var(--copper); color: #fff; border-color: var(--copper); }
 
     /* ── HERO ── */
     #hero {
@@ -155,10 +172,7 @@
       letter-spacing: -.01em;
     }
 
-    #hero h1 em {
-      font-style: italic;
-      color: var(--copper-light);
-    }
+    #hero h1 em { font-style: italic; color: var(--copper-light); }
 
     #hero .subtitle {
       margin-top: 22px;
@@ -226,10 +240,7 @@
       box-shadow: 0 4px 16px rgba(37,211,102,.2);
     }
 
-    .btn-green:hover {
-      filter: brightness(1.1);
-      transform: translateY(-2px);
-    }
+    .btn-green:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
     /* ── HERO VIDEO ── */
     .hero-video-wrap {
@@ -255,16 +266,10 @@
         0 0 80px rgba(200,121,65,.18);
     }
 
-    .hero-video-wrap video {
-      width: 100%;
-      display: block;
-      border-radius: 16px;
-    }
+    .hero-video-wrap video { width: 100%; display: block; border-radius: 16px; }
 
-    /* ── VIDEO PLAYER INLINE ── */
-    .pkg-video-wrap, .hero-video-wrap {
-      position: relative;
-    }
+    /* ── VIDEO PLAYER ── */
+    .pkg-video-wrap, .hero-video-wrap { position: relative; }
 
     .vid-overlay {
       position: absolute;
@@ -279,10 +284,7 @@
     }
 
     .pkg-video-wrap.playing .vid-overlay,
-    .hero-video-wrap.playing .vid-overlay {
-      opacity: 0;
-      pointer-events: none;
-    }
+    .hero-video-wrap.playing .vid-overlay { opacity: 0; pointer-events: none; }
 
     .play-btn {
       width: 60px; height: 60px;
@@ -296,7 +298,7 @@
 
     .play-btn:hover { background: var(--copper-light); transform: scale(1.1); }
     .play-btn svg { width: 22px; height: 22px; fill: #fff; margin-left: 3px; }
-    .pkg-thumb .play-btn, .pkg-video-wrap .play-btn { width: 48px; height: 48px; }
+    .pkg-video-wrap .play-btn { width: 48px; height: 48px; }
     .pkg-video-wrap .play-btn svg { width: 18px; }
 
     .vid-label-text {
@@ -308,19 +310,13 @@
       text-transform: uppercase;
     }
 
-    .video-caption {
-      color: var(--muted);
-      font-size: .82rem;
-      margin-top: 14px;
-      letter-spacing: .04em;
-    }
+    .video-caption { color: var(--muted); font-size: .82rem; margin-top: 14px; letter-spacing: .04em; }
 
     /* ── STATS ── */
     .stats-bar {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0;
       flex-wrap: wrap;
       border-top: 1px solid rgba(245,239,232,.04);
       border-bottom: 1px solid rgba(245,239,232,.04);
@@ -328,7 +324,7 @@
 
     .stat-item {
       flex: 1;
-      min-width: 140px;
+      min-width: 120px;
       padding: 28px 20px;
       text-align: center;
       border-right: 1px solid rgba(245,239,232,.04);
@@ -409,6 +405,36 @@
       color: var(--copper-light);
     }
 
+    .cat-hint {
+      margin-top: 22px;
+      font-size: .88rem;
+      color: var(--copper-light);
+      font-style: italic;
+      min-height: 1.4em;
+      transition: opacity .3s;
+    }
+
+    /* ── URGENCY ── */
+    .urgency-bar {
+      background: linear-gradient(90deg, rgba(200,121,65,.1), rgba(200,121,65,.06));
+      border: 1px solid rgba(200,121,65,.2);
+      border-radius: 8px;
+      padding: 14px 24px;
+      text-align: center;
+      margin: 0 24px 0;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .urgency-bar p {
+      font-size: .88rem;
+      color: var(--copper-light);
+      font-weight: 500;
+    }
+
+    .urgency-bar p span { color: var(--cream); font-weight: 600; }
+
     /* ── PACKAGES ── */
     #homenagens { padding: 90px 24px; }
 
@@ -488,7 +514,7 @@
     .features li {
       font-size: .84rem;
       color: #b8b0c8;
-      display: flex; align-items: center; gap: 9px;
+      display: flex; align-items: flex-start; gap: 9px;
       margin-bottom: 8px;
     }
 
@@ -498,6 +524,7 @@
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
+      margin-top: 2px;
     }
 
     .check-icon svg { width: 8px; height: 8px; fill: var(--copper); }
@@ -507,11 +534,13 @@
       font-size: 1.9rem;
       font-weight: 700;
       color: var(--copper-light);
-      margin-bottom: 16px;
+      margin-bottom: 4px;
       letter-spacing: -.01em;
     }
 
     .price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+
+    .price-note { font-size: .78rem; color: var(--muted); margin-bottom: 16px; }
 
     /* ── PROMISE ── */
     #promessa { padding: 80px 24px; }
@@ -524,7 +553,6 @@
       margin: 0 auto;
       text-align: center;
       background: linear-gradient(135deg, rgba(200,121,65,.05), rgba(201,123,123,.03));
-      position: relative;
     }
 
     .promise-box .ornament {
@@ -744,6 +772,73 @@
     }
 
     .step p { font-size: .86rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+    .step .step-detail { margin-top: 10px; font-size: .78rem; color: var(--copper); font-weight: 500; }
+
+    /* ── FAQ ── */
+    #faq { padding: 90px 24px; }
+
+    .faq-list {
+      max-width: 720px;
+      margin: 52px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+
+    .faq-item.open { border-color: rgba(200,121,65,.3); }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .97rem;
+      font-weight: 500;
+      padding: 20px 24px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: color .2s;
+    }
+
+    .faq-item.open .faq-q { color: var(--copper-light); }
+
+    .faq-icon {
+      width: 22px; height: 22px;
+      border: 1.5px solid rgba(200,121,65,.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: transform .3s, border-color .2s;
+    }
+
+    .faq-item.open .faq-icon { transform: rotate(45deg); border-color: var(--copper); }
+    .faq-icon svg { width: 10px; height: 10px; fill: var(--copper); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s;
+      padding: 0 24px;
+    }
+
+    .faq-item.open .faq-a { max-height: 300px; padding: 0 24px 20px; }
+
+    .faq-a p { color: var(--muted); font-size: .92rem; line-height: 1.75; font-weight: 300; }
+
+    .faq-a strong { color: var(--copper-light); font-weight: 600; }
 
     /* ── GUARANTEE ── */
     #garantia { padding: 70px 24px; }
@@ -761,13 +856,7 @@
       flex-wrap: wrap;
     }
 
-    .guarantee-icon {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 4rem;
-      color: var(--copper);
-      opacity: .7;
-      flex-shrink: 0;
-    }
+    .guarantee-icon { font-size: 4rem; flex-shrink: 0; }
 
     .guarantee-text h3 {
       font-family: 'Cormorant Garamond', serif;
@@ -810,20 +899,22 @@
     }
 
     .cta-inner h2 em { font-style: italic; color: var(--copper-light); }
-
     .cta-inner p { color: var(--muted); margin-bottom: 40px; font-size: 1rem; font-weight: 300; line-height: 1.7; }
 
     /* ── FOOTER ── */
     footer {
       text-align: center;
-      padding: 32px 24px;
-      color: #3a3a4a;
-      font-size: .8rem;
-      border-top: 1px solid rgba(255,255,255,.04);
-      letter-spacing: .06em;
+      padding: 36px 24px;
+      color: #9090a8;
+      font-size: .82rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+      letter-spacing: .04em;
+      line-height: 2;
     }
 
-    footer em { color: var(--copper); font-style: normal; }
+    footer em { color: var(--copper-light); font-style: normal; font-weight: 600; }
+    footer a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    footer a:hover { color: var(--copper-light); }
 
     /* ── WA FAB ── */
     .whatsapp-fab {
@@ -842,53 +933,6 @@
     .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,.55); }
     .whatsapp-fab svg { width: 30px; height: 30px; fill: #fff; }
 
-    /* ── MODAL ── */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.92);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      backdrop-filter: blur(10px);
-    }
-
-    .modal-overlay.open { display: flex; }
-
-    .modal-box {
-      background: var(--card2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-      width: 100%;
-      max-width: 380px;
-      position: relative;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 12px; right: 16px;
-      background: none; border: none;
-      color: var(--muted); font-size: 1.3rem;
-      cursor: pointer; transition: color .2s;
-    }
-
-    .modal-close:hover { color: var(--cream); }
-
-    .modal-placeholder {
-      width: 100%;
-      aspect-ratio: 9/16;
-      background: rgba(255,255,255,.02);
-      border-radius: 10px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      color: var(--muted); font-size: .88rem; gap: 12px;
-    }
-
-    .modal-placeholder svg { width: 48px; height: 48px; fill: var(--copper); opacity: .4; }
-
     /* ── FADE UP ── */
     .fade-up {
       opacity: 0;
@@ -902,7 +946,7 @@
       .packages-grid { grid-template-columns: 1fr; }
       .steps { grid-template-columns: 1fr; }
       .guarantee-inner { flex-direction: column; text-align: center; padding: 36px 24px; }
-      .stat-item { min-width: 110px; }
+      .stat-item { min-width: 90px; padding: 20px 12px; }
       .promise-box { padding: 40px 24px; }
     }
   </style>
@@ -914,7 +958,7 @@
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-logo">Sempre <span>Presente</span></div>
-  <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20saber%20mais%20sobre%20as%20homenagens" class="nav-cta" target="_blank">Falar no WhatsApp</a>
+  <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20saber%20mais%20sobre%20as%20homenagens" class="nav-cta" target="_blank" rel="noopener">Falar no WhatsApp</a>
 </nav>
 
 <!-- ── HERO ── -->
@@ -929,8 +973,8 @@
   </div>
 
   <div class="hero-video-wrap" id="videoHero" onclick="playInline(this)">
-    <video id="vidHero" src="video-despedida.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-hero.jpg"></video>
-    <div class="vid-overlay">
+    <video src="video-despedida.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-hero.jpg" aria-label="Exemplo de homenagem em vídeo"></video>
+    <div class="vid-overlay" aria-hidden="true">
       <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
   </div>
@@ -944,8 +988,8 @@
     <span class="stat-label">Famílias atendidas</span>
   </div>
   <div class="stat-item">
-    <span class="stat-num">⭐ 5.0</span>
-    <span class="stat-label">Avaliação dos clientes</span>
+    <span class="stat-num">5.0 ★</span>
+    <span class="stat-label">Avaliação média</span>
   </div>
   <div class="stat-item">
     <span class="stat-num">24h</span>
@@ -963,15 +1007,21 @@
     <span class="s-label">Para quem é esta homenagem?</span>
     <h2 class="s-title">Quem você deseja<br>homenagear?</h2>
     <div class="cat-grid">
-      <button class="cat-btn active" onclick="selectCat(this)">🕊 Pai</button>
-      <button class="cat-btn" onclick="selectCat(this)">🕊 Mãe</button>
-      <button class="cat-btn" onclick="selectCat(this)">🕊 Avós</button>
-      <button class="cat-btn" onclick="selectCat(this)">🕊 Esposo(a)</button>
-      <button class="cat-btn" onclick="selectCat(this)">🕊 Amigo(a)</button>
-      <button class="cat-btn" onclick="selectCat(this)">🕊 Outro familiar</button>
+      <button class="cat-btn active" onclick="selectCat(this,'seu pai')">🕊 Pai</button>
+      <button class="cat-btn" onclick="selectCat(this,'sua mãe')">🕊 Mãe</button>
+      <button class="cat-btn" onclick="selectCat(this,'seus avós')">🕊 Avós</button>
+      <button class="cat-btn" onclick="selectCat(this,'seu esposo ou esposa')">🕊 Esposo(a)</button>
+      <button class="cat-btn" onclick="selectCat(this,'seu amigo ou amiga')">🕊 Amigo(a)</button>
+      <button class="cat-btn" onclick="selectCat(this,'outro familiar')">🕊 Outro familiar</button>
     </div>
+    <p class="cat-hint" id="catHint">Escolha abaixo a homenagem ideal para seu pai ↓</p>
   </div>
 </section>
+
+<!-- ── URGENCY ── -->
+<div class="urgency-bar fade-up">
+  <p>⏳ <span>Agenda com vagas limitadas</span> — atendemos um número reduzido de pedidos por semana para garantir dedicação total a cada família. Reserve a sua com antecedência.</p>
+</div>
 
 <!-- ── PACKAGES ── -->
 <section id="homenagens">
@@ -987,21 +1037,23 @@
       <!-- Simples -->
       <div class="pkg-card fade-up">
         <div class="pkg-video-wrap" onclick="playInline(this)">
-          <video src="video-simples.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-simples.jpg"></video>
-          <div class="vid-overlay">
+          <video src="video-simples.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-simples.jpg" aria-label="Exemplo Homenagem Simples"></video>
+          <div class="vid-overlay" aria-hidden="true">
             <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
             <span class="vid-label-text">Ver exemplo</span>
           </div>
         </div>
         <div class="pkg-body">
           <h3>Homenagem Simples</h3>
-          <p class="desc">Uma cena tocante e especial que ficará guardada para sempre no coração da família.</p>
+          <p class="desc">Uma cena única e tocante com a pessoa homenageada — perfeita para guardar e compartilhar com a família.</p>
           <ul class="features">
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial</li>
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Abraço especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> 1 cena emocionante personalizada</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Foto da pessoa inserida no vídeo</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Entrega em até 24h via WhatsApp</li>
           </ul>
           <div class="price">R$ 50<span>,00</span></div>
-          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20Simples%20-%20R$50" class="btn btn-green" target="_blank">
+          <p class="price-note">Pagamento via PIX após aprovação</p>
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20Simples%20-%20R$50" class="btn btn-green" target="_blank" rel="noopener">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             Solicitar Homenagem
           </a>
@@ -1012,22 +1064,24 @@
       <div class="pkg-card featured fade-up">
         <div class="pkg-badge">Mais Escolhida</div>
         <div class="pkg-video-wrap" onclick="playInline(this)">
-          <video src="video-completa.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-completa.jpg"></video>
-          <div class="vid-overlay">
+          <video src="video-completa.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-completa.jpg" aria-label="Exemplo Homenagem Completa"></video>
+          <div class="vid-overlay" aria-hidden="true">
             <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
             <span class="vid-label-text">Ver exemplo</span>
           </div>
         </div>
         <div class="pkg-body">
           <h3>Homenagem Completa</h3>
-          <p class="desc">Uma narrativa emocionante do reencontro com um final que toca a alma de quem assiste.</p>
+          <p class="desc">Uma narrativa emocionante com início, meio e final — o reencontro com um desfecho que toca a alma.</p>
           <ul class="features">
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena de reencontro</li>
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Abraço especial</li>
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final emocionante</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena de chegada + abraço de reencontro</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Foto da pessoa inserida no vídeo</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final emocionante com música</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Entrega em até 24h via WhatsApp</li>
           </ul>
           <div class="price">R$ 60<span>,00</span></div>
-          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20Completa%20-%20R$60" class="btn btn-green" target="_blank">
+          <p class="price-note">Pagamento via PIX após aprovação</p>
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20Completa%20-%20R$60" class="btn btn-green" target="_blank" rel="noopener">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             Solicitar Homenagem
           </a>
@@ -1037,21 +1091,24 @@
       <!-- Despedida -->
       <div class="pkg-card fade-up">
         <div class="pkg-video-wrap" onclick="playInline(this)">
-          <video src="video-despedida.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-despedida.jpg"></video>
-          <div class="vid-overlay">
+          <video src="video-despedida.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-despedida.jpg" aria-label="Exemplo Despedida Especial"></video>
+          <div class="vid-overlay" aria-hidden="true">
             <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
             <span class="vid-label-text">Ver exemplo</span>
           </div>
         </div>
         <div class="pkg-body">
           <h3>Despedida Especial</h3>
-          <p class="desc">Uma homenagem íntima e personalizada para expressar o amor que não cabe em palavras.</p>
+          <p class="desc">Uma homenagem íntima de despedida — para expressar o amor e o adeus que as palavras não conseguem dizer.</p>
           <ul class="features">
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial de despedida</li>
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena íntima e personalizada de despedida</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Foto da pessoa inserida no vídeo</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Mensagem visual de amor e despedida</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Entrega em até 24h via WhatsApp</li>
           </ul>
           <div class="price">R$ 75<span>,00</span></div>
-          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Despedida%20Especial%20-%20R$75" class="btn btn-green" target="_blank">
+          <p class="price-note">Pagamento via PIX após aprovação</p>
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Despedida%20Especial%20-%20R$75" class="btn btn-green" target="_blank" rel="noopener">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             Solicitar Homenagem
           </a>
@@ -1061,22 +1118,24 @@
       <!-- A Dois -->
       <div class="pkg-card fade-up">
         <div class="pkg-video-wrap" onclick="playInline(this)">
-          <video src="video-adois.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-adois.jpg"></video>
-          <div class="vid-overlay">
+          <video src="video-adois.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-adois.jpg" aria-label="Exemplo Homenagem a Dois"></video>
+          <div class="vid-overlay" aria-hidden="true">
             <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
             <span class="vid-label-text">Ver exemplo</span>
           </div>
         </div>
         <div class="pkg-body">
           <h3>Homenagem a Dois</h3>
-          <p class="desc">Para honrar dois amores ao mesmo tempo, numa homenagem que une corações.</p>
+          <p class="desc">Para honrar dois entes queridos juntos — duas pessoas, uma só homenagem cheia de amor e emoção.</p>
           <ul class="features">
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial</li>
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Duas pessoas</li>
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Duas pessoas homenageadas na mesma cena</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Foto das duas pessoas inseridas</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena de reencontro entre elas</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Entrega em até 24h via WhatsApp</li>
           </ul>
           <div class="price">R$ 80<span>,00</span></div>
-          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20a%20Dois%20-%20R$80" class="btn btn-green" target="_blank">
+          <p class="price-note">Pagamento via PIX após aprovação</p>
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20a%20Dois%20-%20R$80" class="btn btn-green" target="_blank" rel="noopener">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             Solicitar Homenagem
           </a>
@@ -1086,23 +1145,25 @@
       <!-- Encontro -->
       <div class="pkg-card fade-up">
         <div class="pkg-video-wrap" onclick="playInline(this)">
-          <video src="video-encontro.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-encontro.jpg"></video>
-          <div class="vid-overlay">
+          <video src="video-encontro.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-encontro.jpg" aria-label="Exemplo Homenagem de Encontro"></video>
+          <div class="vid-overlay" aria-hidden="true">
             <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
             <span class="vid-label-text">Ver exemplo</span>
           </div>
         </div>
         <div class="pkg-body">
           <h3>Homenagem de Encontro</h3>
-          <p class="desc">O momento mágico do reencontro, capturado em imagens que guardam a essência de quem partiu.</p>
+          <p class="desc">A versão mais completa: uma sequência de cenas que conta a história do reencontro do início ao fim.</p>
           <ul class="features">
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial</li>
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Momento de reencontro</li>
-            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Sequência completa de várias cenas</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Foto da pessoa inserida no vídeo</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Maior duração e mais momentos</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Entrega em até 24h via WhatsApp</li>
           </ul>
           <div class="price">R$ 80<span>,00</span></div>
-          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20de%20Encontro%20-%20R$80" class="btn btn-green" target="_blank">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.397.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+          <p class="price-note">Pagamento via PIX após aprovação</p>
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20de%20Encontro%20-%20R$80" class="btn btn-green" target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             Solicitar Homenagem
           </a>
         </div>
@@ -1118,7 +1179,7 @@
     <div class="ornament">❝</div>
     <h2>Porque algumas pessoas deixam uma marca tão profunda no coração, que merecem ser lembradas para sempre.</h2>
     <p>Cada homenagem é criada com amor, atenção e cuidado — para que a memória de quem você ama viva eternamente em cada detalhe.</p>
-    <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20fazer%20minha%20homenagem" class="btn btn-primary" target="_blank">Faça já sua homenagem</a>
+    <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20fazer%20minha%20homenagem" class="btn btn-primary" target="_blank" rel="noopener">Faça já sua homenagem</a>
   </div>
 </section>
 
@@ -1133,7 +1194,6 @@
 
     <div class="testi-track">
 
-      <!-- conversa 1 -->
       <div class="wa-mock">
         <div class="wa-header">
           <div class="wa-avatar">R</div>
@@ -1164,7 +1224,6 @@
         </div>
       </div>
 
-      <!-- conversa 2 -->
       <div class="wa-mock">
         <div class="wa-header">
           <div class="wa-avatar">C</div>
@@ -1195,7 +1254,6 @@
         </div>
       </div>
 
-      <!-- conversa 3 -->
       <div class="wa-mock">
         <div class="wa-header">
           <div class="wa-avatar">V</div>
@@ -1226,7 +1284,6 @@
         </div>
       </div>
 
-      <!-- conversa 4 -->
       <div class="wa-mock">
         <div class="wa-header">
           <div class="wa-avatar">F</div>
@@ -1273,18 +1330,95 @@
       <div class="step fade-up">
         <div class="step-num">01</div>
         <h3>Escolha a homenagem</h3>
-        <p>Selecione o tipo de homenagem que melhor expressa o amor que você sente por quem partiu.</p>
+        <p>Selecione o tipo de homenagem que melhor expressa o amor que você sente por quem partiu e clique em "Solicitar".</p>
+        <p class="step-detail">→ Você é direcionado direto ao WhatsApp</p>
       </div>
       <div class="step fade-up">
         <div class="step-num">02</div>
-        <h3>Envie a fotografia</h3>
-        <p>Mande uma foto da pessoa pelo WhatsApp. Quanto mais bonita a foto, mais emocionante fica o vídeo.</p>
+        <h3>Envie a foto e pague</h3>
+        <p>Mande uma foto da pessoa pelo WhatsApp. Após aprovação, o pagamento é feito via PIX — simples e seguro.</p>
+        <p class="step-detail">→ Pagamento só após ver o modelo</p>
       </div>
       <div class="step fade-up">
         <div class="step-num">03</div>
-        <h3>Receba e se emocione</h3>
-        <p>Em até 24 horas você recebe o vídeo pronto para guardar e compartilhar com quem você ama.</p>
+        <h3>Receba em até 24h</h3>
+        <p>Seu vídeo personalizado é entregue pelo próprio WhatsApp em até 24 horas, pronto para guardar e compartilhar.</p>
+        <p class="step-detail">→ Arquivo em MP4, qualidade total</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section id="faq">
+  <div class="container">
+    <div style="text-align:center" class="fade-up">
+      <span class="s-label">Dúvidas frequentes</span>
+      <h2 class="s-title">Perguntas e respostas</h2>
+      <p class="s-sub">Tudo o que você precisa saber antes de fazer sua homenagem.</p>
+    </div>
+    <div class="faq-list fade-up">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          O que exatamente eu preciso enviar para fazer a homenagem?
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </button>
+        <div class="faq-a" role="region">
+          <p>Apenas <strong>uma foto da pessoa</strong> que você deseja homenagear. Quanto mais nítida e bem iluminada a foto, mais realista e emocionante ficará o vídeo. Pode ser uma foto do celular mesmo — não precisa ser profissional.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          Como funciona o pagamento? É seguro?
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </button>
+        <div class="faq-a" role="region">
+          <p>O pagamento é feito via <strong>PIX</strong>, apenas após você ver o modelo e aprovar. Você não paga nada antes de confirmar que quer prosseguir — sem riscos.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          Quanto tempo leva para receber meu vídeo?
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </button>
+        <div class="faq-a" role="region">
+          <p>Em até <strong>24 horas</strong> após a confirmação do pagamento, seu vídeo é entregue pelo próprio WhatsApp. Em períodos de alta demanda, o prazo pode se estender um pouco — mas você será avisado.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          Em que formato recebo o vídeo? Posso compartilhar?
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </button>
+        <div class="faq-a" role="region">
+          <p>Você recebe o vídeo em formato <strong>MP4</strong>, direto no WhatsApp. Pode salvar no celular, compartilhar com a família, postar no status ou guardar para sempre. O arquivo é seu para sempre.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          Posso pedir revisão se não gostar do resultado?
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </button>
+        <div class="faq-a" role="region">
+          <p>Sim. Se o resultado não ficou como esperado, <strong>entre em contato pelo WhatsApp</strong> e analisamos o que pode ser ajustado. Nossa prioridade é que você fique emocionado e satisfeito com a homenagem.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          Qual a diferença entre os pacotes?
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
+        </button>
+        <div class="faq-a" role="region">
+          <p>A principal diferença está na <strong>quantidade de cenas e na duração</strong> do vídeo. A Homenagem Simples tem 1 cena rápida e tocante. A Completa adiciona cenas de reencontro e abraço. A Despedida tem foco íntimo. A Dois inclui duas pessoas. O Encontro é a versão mais longa, com várias cenas em sequência.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1308,7 +1442,7 @@
     <span class="s-label" style="display:block;margin-bottom:14px">Uma lembrança para sempre</span>
     <h2>Transforme a saudade em uma <em>homenagem eterna</em></h2>
     <p>Uma simples fotografia pode se tornar a lembrança mais emocionante que sua família já viveu.</p>
-    <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20solicitar%20minha%20homenagem" class="btn btn-primary" target="_blank" style="font-size:1rem;padding:16px 40px">
+    <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20solicitar%20minha%20homenagem" class="btn btn-primary" target="_blank" rel="noopener" style="font-size:1rem;padding:16px 40px">
       Criar minha homenagem agora
     </a>
   </div>
@@ -1316,19 +1450,27 @@
 
 <!-- ── FOOTER ── -->
 <footer>
-  <em>Sempre Presente</em> · Homenagens em vídeo personalizadas · Atendimento via WhatsApp
+  <em>Sempre Presente</em> · Homenagens em vídeo personalizadas<br>
+  Atendimento via <a href="https://wa.me/5531973387655" target="_blank" rel="noopener">WhatsApp</a>
+  <!-- Adicione seu Instagram aqui: · <a href="https://instagram.com/SEU_PERFIL" target="_blank" rel="noopener">Instagram</a> -->
 </footer>
 
 <!-- ── WA FAB ── -->
-<a class="whatsapp-fab" href="https://wa.me/5531973387655" target="_blank" aria-label="WhatsApp">
+<a class="whatsapp-fab" href="https://wa.me/5531973387655" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
-  // ── Floating particles canvas ──
+  // ── Floating particles ──
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
   let particles = [];
+  let animRunning = true;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    animRunning = false;
+    canvas.style.display = 'none';
+  }
 
   function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 
@@ -1348,6 +1490,7 @@
   }
 
   function draw(t) {
+    if (!animRunning) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => {
       p.y += p.vy;
@@ -1364,7 +1507,7 @@
   resize();
   initParticles();
   window.addEventListener('resize', () => { resize(); initParticles(); });
-  requestAnimationFrame(draw);
+  if (animRunning) requestAnimationFrame(draw);
 
   // ── Video player ──
   function playInline(wrap) {
@@ -1379,15 +1522,31 @@
   }
 
   // ── Category buttons ──
-  function selectCat(btn) {
+  function selectCat(btn, label) {
     document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+    document.getElementById('catHint').textContent = `Escolha abaixo a homenagem ideal para ${label} ↓`;
+    document.getElementById('homenagens').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ── FAQ accordion ──
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
   }
 
   // ── Fade on scroll ──
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
