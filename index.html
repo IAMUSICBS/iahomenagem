@@ -3,98 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Homenagem Eterna · Eternize quem você ama</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Sempre Presente · Homenagens em Vídeo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold: #d4a843;
-      --gold-light: #f0c96a;
-      --gold-dark: #a07820;
+      --copper: #c87941;
+      --copper-light: #e09460;
+      --copper-glow: rgba(200,121,65,.18);
+      --rose: #c97b7b;
+      --cream: #f5efe8;
+      --muted: #8a8199;
+      --bg: #07090f;
+      --bg2: #0b0f1a;
+      --card: #0f1424;
+      --card2: #131828;
+      --border: rgba(200,121,65,.15);
       --green: #25d366;
-      --bg: #0c0a14;
-      --bg2: #110e1f;
-      --card: #16132a;
-      --card2: #1e1a33;
-      --border: rgba(212,168,67,.18);
-      --text: #f0ece8;
-      --muted: #9b93b0;
-      --purple: #6b4fa0;
-      --blue: #2d4a8a;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    h1, h2, h3 { font-family: 'Playfair Display', serif; }
-
-    /* ── CANVAS STARS ── */
-    #stars-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* ── GRADIENT BG ── */
+    /* ── BACKGROUND ── */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(107,79,160,.35) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(212,168,67,.08) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 50% at 10% 90%, rgba(45,74,138,.15) 0%, transparent 60%);
+        radial-gradient(ellipse 100% 55% at 50% 0%, rgba(200,121,65,.12) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 40% at 15% 60%, rgba(201,123,123,.06) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 50% at 85% 40%, rgba(200,121,65,.06) 0%, transparent 55%);
       pointer-events: none;
       z-index: 0;
     }
 
-    section, header, footer { position: relative; z-index: 1; }
+    canvas#bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .6;
+    }
 
-    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    section, nav, footer { position: relative; z-index: 1; }
+
+    .container { max-width: 980px; margin: 0 auto; padding: 0 24px; }
 
     /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 16px 24px;
+      padding: 18px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(12,10,20,.7);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(212,168,67,.1);
+      background: rgba(7,9,15,.75);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(200,121,65,.08);
     }
 
     .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 900;
-      color: var(--gold);
-      letter-spacing: .02em;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--copper-light);
+      letter-spacing: .04em;
     }
+
+    .nav-logo span { font-style: italic; color: var(--cream); }
 
     .nav-cta {
-      background: var(--gold);
-      color: #000;
-      font-weight: 700;
+      background: transparent;
+      color: var(--copper-light);
+      border: 1.5px solid rgba(200,121,65,.5);
+      font-weight: 600;
       font-size: .82rem;
-      padding: 9px 20px;
-      border-radius: 50px;
+      padding: 9px 22px;
+      border-radius: 4px;
       text-decoration: none;
-      transition: background .2s, transform .15s;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: all .2s;
+      font-family: 'DM Sans', sans-serif;
     }
 
-    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .nav-cta:hover {
+      background: var(--copper);
+      color: #fff;
+      border-color: var(--copper);
+    }
 
     /* ── HERO ── */
     #hero {
@@ -104,48 +111,50 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 120px 24px 80px;
+      padding: 130px 24px 80px;
     }
 
-    .badge {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: .75rem;
-      font-weight: 600;
-      letter-spacing: .15em;
+      gap: 10px;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(212,168,67,.3);
-      border-radius: 50px;
-      padding: 6px 18px;
-      margin-bottom: 32px;
-      background: rgba(212,168,67,.06);
+      color: var(--copper);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow::before, .eyebrow::after {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--copper);
+      opacity: .5;
     }
 
     #hero h1 {
-      font-size: clamp(2.6rem, 7vw, 4.5rem);
-      font-weight: 900;
-      line-height: 1.1;
-      max-width: 760px;
-      color: #fff;
-      text-shadow: 0 2px 40px rgba(107,79,160,.5);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.06;
+      max-width: 820px;
+      color: var(--cream);
+      letter-spacing: -.01em;
     }
 
     #hero h1 em {
-      font-style: normal;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold), #e8a020);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-style: italic;
+      color: var(--copper-light);
     }
 
     #hero .subtitle {
-      margin-top: 20px;
+      margin-top: 22px;
       color: var(--muted);
-      font-size: 1.1rem;
-      max-width: 460px;
+      font-size: 1.05rem;
+      max-width: 480px;
       font-weight: 300;
+      line-height: 1.7;
     }
 
     .hero-actions {
@@ -153,425 +162,407 @@
       gap: 14px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 36px;
+      margin-top: 40px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 28px;
-      border-radius: 50px;
-      font-size: .97rem;
-      font-weight: 700;
+      padding: 14px 30px;
+      border-radius: 4px;
+      font-size: .93rem;
+      font-weight: 600;
       cursor: pointer;
       text-decoration: none;
       text-align: center;
-      transition: all .2s;
+      transition: all .22s;
       border: none;
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: .03em;
     }
 
-    .btn-gold {
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
-      color: #000;
-      box-shadow: 0 4px 24px rgba(212,168,67,.35);
+    .btn-primary {
+      background: var(--copper);
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(200,121,65,.3);
     }
 
-    .btn-gold:hover {
+    .btn-primary:hover {
+      background: var(--copper-light);
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(212,168,67,.5);
+      box-shadow: 0 8px 32px rgba(200,121,65,.45);
     }
 
-    .btn-outline {
+    .btn-ghost {
       background: transparent;
-      color: var(--text);
-      border: 1.5px solid rgba(255,255,255,.2);
+      color: var(--cream);
+      border: 1px solid rgba(245,239,232,.15);
     }
 
-    .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
+    .btn-ghost:hover {
+      border-color: var(--copper);
+      color: var(--copper-light);
       transform: translateY(-2px);
     }
 
     .btn-green {
-      background: linear-gradient(135deg, #25d366, #128c50);
+      background: var(--green);
       color: #fff;
-      box-shadow: 0 4px 20px rgba(37,211,102,.3);
       width: 100%;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(37,211,102,.2);
     }
 
     .btn-green:hover {
+      filter: brightness(1.1);
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(37,211,102,.45);
     }
 
-    /* Video thumb hero */
-    .video-thumb {
+    /* ── HERO VIDEO ── */
+    .hero-video-wrap {
       position: relative;
       width: 100%;
-      max-width: 280px;
-      margin: 48px auto 16px;
-      border-radius: 24px;
+      max-width: 260px;
+      margin: 52px auto 16px;
+      border-radius: 16px;
       overflow: hidden;
       cursor: pointer;
       box-shadow:
-        0 0 0 1px rgba(212,168,67,.2),
-        0 24px 80px rgba(107,79,160,.35),
-        0 8px 32px rgba(0,0,0,.5);
+        0 0 0 1px rgba(200,121,65,.2),
+        0 32px 80px rgba(0,0,0,.6),
+        0 0 60px rgba(200,121,65,.1);
       transition: transform .3s, box-shadow .3s;
     }
 
-    .video-thumb:hover {
-      transform: scale(1.03);
+    .hero-video-wrap:hover {
+      transform: scale(1.02);
       box-shadow:
-        0 0 0 1px rgba(212,168,67,.4),
-        0 32px 100px rgba(107,79,160,.5),
-        0 8px 32px rgba(0,0,0,.6);
+        0 0 0 1px rgba(200,121,65,.35),
+        0 40px 100px rgba(0,0,0,.7),
+        0 0 80px rgba(200,121,65,.18);
     }
 
-    .video-thumb img {
+    .hero-video-wrap video {
       width: 100%;
       display: block;
-      border-radius: 24px;
+      border-radius: 16px;
     }
 
-    .play-btn {
+    /* ── VIDEO PLAYER INLINE ── */
+    .pkg-video-wrap, .hero-video-wrap {
+      position: relative;
+    }
+
+    .vid-overlay {
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 68px; height: 68px;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 24px rgba(212,168,67,.5);
-      transition: transform .2s, box-shadow .2s;
-    }
-
-    .video-thumb:hover .play-btn {
-      transform: translate(-50%, -50%) scale(1.1);
-      box-shadow: 0 8px 32px rgba(212,168,67,.7);
-    }
-
-    .play-btn svg { width: 26px; height: 26px; fill: #000; margin-left: 4px; }
-
-    .pkg-thumb .play-btn { width: 52px; height: 52px; }
-    .pkg-thumb .play-btn svg { width: 20px; }
-
-    .video-caption { color: var(--muted); font-size: .85rem; }
-
-    /* ── DIVIDER ── */
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin: 0 auto;
-      max-width: 300px;
-      padding: 0 24px;
-    }
-
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(212,168,67,.3), transparent);
-    }
-
-    .divider span { color: var(--gold); font-size: 1.2rem; }
-
-    /* ── SOCIAL PROOF BAR ── */
-    .social-proof {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      padding: 28px 24px;
-      border-top: 1px solid rgba(255,255,255,.04);
-      border-bottom: 1px solid rgba(255,255,255,.04);
-    }
-
-    .sp-item {
+      inset: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
+      justify-content: center;
+      background: linear-gradient(to top, rgba(7,9,15,.65) 0%, rgba(0,0,0,.15) 100%);
+      border-radius: inherit;
+      transition: opacity .3s;
     }
 
-    .sp-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: var(--gold);
+    .pkg-video-wrap.playing .vid-overlay,
+    .hero-video-wrap.playing .vid-overlay {
+      opacity: 0;
+      pointer-events: none;
     }
 
-    .sp-label { font-size: .78rem; color: var(--muted); text-align: center; }
+    .play-btn {
+      width: 60px; height: 60px;
+      background: rgba(200,121,65,.9);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 24px rgba(200,121,65,.5);
+      transition: transform .2s, background .2s;
+      backdrop-filter: blur(4px);
+    }
 
-    .sp-sep { width: 1px; height: 40px; background: rgba(255,255,255,.08); }
+    .play-btn:hover { background: var(--copper-light); transform: scale(1.1); }
+    .play-btn svg { width: 22px; height: 22px; fill: #fff; margin-left: 3px; }
+    .pkg-thumb .play-btn, .pkg-video-wrap .play-btn { width: 48px; height: 48px; }
+    .pkg-video-wrap .play-btn svg { width: 18px; }
 
-    /* ── SECTION HEADERS ── */
-    .section-label {
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .18em;
+    .vid-label-text {
+      color: rgba(245,239,232,.8);
+      font-size: .75rem;
+      margin-top: 10px;
+      font-weight: 500;
+      letter-spacing: .06em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 12px;
     }
 
-    .section-title {
-      font-size: clamp(1.8rem, 4.5vw, 2.8rem);
-      font-weight: 900;
-      color: #fff;
-      line-height: 1.15;
+    .video-caption {
+      color: var(--muted);
+      font-size: .82rem;
+      margin-top: 14px;
+      letter-spacing: .04em;
     }
 
-    .section-sub {
+    /* ── STATS ── */
+    .stats-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(245,239,232,.04);
+      border-bottom: 1px solid rgba(245,239,232,.04);
+    }
+
+    .stat-item {
+      flex: 1;
+      min-width: 140px;
+      padding: 28px 20px;
+      text-align: center;
+      border-right: 1px solid rgba(245,239,232,.04);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--copper-light);
+      display: block;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label { font-size: .75rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+
+    /* ── SECTION LABELS ── */
+    .s-label {
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .s-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.12;
+      letter-spacing: -.01em;
+    }
+
+    .s-sub {
       color: var(--muted);
       font-size: .97rem;
-      margin-top: 12px;
+      margin-top: 14px;
       font-weight: 300;
+      line-height: 1.7;
     }
 
     /* ── WHO ── */
-    #quem {
-      padding: 80px 24px;
-      text-align: center;
-    }
+    #quem { padding: 90px 24px; text-align: center; }
 
-    .category-grid {
+    .cat-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       max-width: 560px;
       margin: 36px auto 0;
     }
 
     .cat-btn {
-      border: 1.5px solid rgba(212,168,67,.25);
-      background: rgba(212,168,67,.05);
-      color: var(--text);
-      border-radius: 50px;
-      padding: 12px 26px;
-      font-size: .93rem;
+      border: 1px solid rgba(200,121,65,.2);
+      background: rgba(200,121,65,.04);
+      color: var(--muted);
+      border-radius: 3px;
+      padding: 10px 24px;
+      font-size: .88rem;
       font-weight: 500;
       cursor: pointer;
-      display: flex; align-items: center; gap: 8px;
+      display: flex; align-items: center; gap: 7px;
       transition: all .2s;
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: .04em;
     }
 
     .cat-btn:hover, .cat-btn.active {
-      border-color: var(--gold);
-      background: rgba(212,168,67,.12);
-      color: var(--gold-light);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(212,168,67,.15);
+      border-color: var(--copper);
+      background: rgba(200,121,65,.1);
+      color: var(--copper-light);
     }
 
     /* ── PACKAGES ── */
-    #homenagens {
-      padding: 80px 24px;
-      text-align: center;
-    }
+    #homenagens { padding: 90px 24px; }
 
     .packages-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 900px;
-      margin: 48px auto 0;
+      grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+      gap: 18px;
+      max-width: 980px;
+      margin: 52px auto 0;
     }
 
     .pkg-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 24px;
+      border-radius: 12px;
       overflow: hidden;
       display: flex; flex-direction: column;
       transition: all .3s;
       position: relative;
     }
 
-    .pkg-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(212,168,67,.04), transparent);
-      pointer-events: none;
-    }
-
     .pkg-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(107,79,160,.25), 0 0 0 1px rgba(212,168,67,.3);
-      border-color: rgba(212,168,67,.4);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(200,121,65,.25);
+      border-color: rgba(200,121,65,.3);
     }
 
     .pkg-card.featured {
-      border-color: rgba(212,168,67,.5);
-      box-shadow: 0 0 0 1px rgba(212,168,67,.3), 0 12px 40px rgba(212,168,67,.1);
+      border-color: rgba(200,121,65,.35);
+      box-shadow: 0 0 40px rgba(200,121,65,.08);
     }
 
     .pkg-badge {
       position: absolute;
-      top: 14px; right: 14px;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
-      color: #000;
-      font-size: .68rem;
-      font-weight: 800;
-      letter-spacing: .08em;
+      top: 12px; right: 12px;
+      background: var(--copper);
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .1em;
       text-transform: uppercase;
       padding: 4px 12px;
-      border-radius: 50px;
+      border-radius: 2px;
       z-index: 2;
     }
 
-    .pkg-thumb {
-      position: relative;
+    .pkg-video-wrap {
       width: 100%;
       aspect-ratio: 3/4;
       overflow: hidden;
+      cursor: pointer;
     }
 
-    .pkg-thumb img {
+    .pkg-video-wrap video {
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       transition: transform .4s;
     }
 
-    .pkg-card:hover .pkg-thumb img { transform: scale(1.05); }
-
-    .pkg-thumb-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(12,10,20,.8) 0%, transparent 50%);
-    }
+    .pkg-card:hover .pkg-video-wrap video { transform: scale(1.04); }
 
     .pkg-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
 
     .pkg-body h3 {
-      font-size: 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
       font-weight: 700;
-      margin-bottom: 6px;
-      color: #fff;
+      margin-bottom: 7px;
+      color: var(--cream);
     }
 
-    .pkg-body .desc {
-      color: var(--muted);
-      font-size: .84rem;
-      margin-bottom: 16px;
-      line-height: 1.5;
-    }
+    .pkg-body .desc { color: var(--muted); font-size: .84rem; margin-bottom: 16px; font-weight: 300; line-height: 1.6; }
 
     .features { list-style: none; margin-bottom: 20px; }
 
     .features li {
-      font-size: .86rem;
-      color: #ccc;
-      display: flex; align-items: center; gap: 8px;
+      font-size: .84rem;
+      color: #b8b0c8;
+      display: flex; align-items: center; gap: 9px;
       margin-bottom: 8px;
     }
 
-    .features li .check {
-      width: 18px; height: 18px;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    .check-icon {
+      width: 16px; height: 16px;
+      border: 1.5px solid var(--copper);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
 
-    .features li .check svg { width: 10px; height: 10px; fill: #000; }
+    .check-icon svg { width: 8px; height: 8px; fill: var(--copper); }
 
     .price {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.7rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--copper-light);
       margin-bottom: 16px;
+      letter-spacing: -.01em;
     }
 
-    /* ── SCARCITY ── */
-    #escassez {
-      padding: 80px 24px;
-    }
+    .price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
 
-    .scarcity-box {
-      border: 1px solid rgba(212,168,67,.3);
-      border-radius: 28px;
-      padding: 60px 40px;
-      max-width: 600px;
+    /* ── PROMISE ── */
+    #promessa { padding: 80px 24px; }
+
+    .promise-box {
+      border: 1px solid rgba(200,121,65,.2);
+      border-radius: 12px;
+      padding: 60px 48px;
+      max-width: 680px;
       margin: 0 auto;
       text-align: center;
-      background: linear-gradient(135deg, rgba(107,79,160,.1), rgba(212,168,67,.04));
+      background: linear-gradient(135deg, rgba(200,121,65,.05), rgba(201,123,123,.03));
       position: relative;
-      overflow: hidden;
     }
 
-    .scarcity-box::before {
-      content: '';
-      position: absolute;
-      top: -60px; left: 50%;
-      transform: translateX(-50%);
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(212,168,67,.15), transparent);
-      pointer-events: none;
+    .promise-box .ornament {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      color: var(--copper);
+      opacity: .3;
+      line-height: 1;
+      margin-bottom: 20px;
     }
 
-    .scarcity-box .icon { font-size: 2.5rem; margin-bottom: 20px; }
-
-    .scarcity-box h2 {
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      color: var(--gold-light);
+    .promise-box h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      color: var(--copper-light);
+      font-style: italic;
       margin-bottom: 16px;
     }
 
-    .scarcity-box p {
-      color: var(--muted);
-      font-size: .97rem;
-      margin-bottom: 32px;
-      line-height: 1.8;
-      font-weight: 300;
-    }
+    .promise-box p { color: var(--muted); font-size: .97rem; margin-bottom: 34px; line-height: 1.8; font-weight: 300; }
 
     /* ── TESTIMONIALS ── */
-    #depoimentos {
-      padding: 80px 24px;
-      text-align: center;
-    }
+    #depoimentos { padding: 90px 24px; }
 
-    .testimonials-track {
+    .testi-track {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       overflow-x: auto;
       padding: 8px 4px 16px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
-      max-width: 900px;
-      margin: 48px auto 0;
+      max-width: 980px;
+      margin: 52px auto 0;
     }
 
-    .testimonials-track::-webkit-scrollbar { height: 3px; }
-    .testimonials-track::-webkit-scrollbar-track { background: rgba(255,255,255,.04); border-radius: 4px; }
-    .testimonials-track::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+    .testi-track::-webkit-scrollbar { height: 2px; }
+    .testi-track::-webkit-scrollbar-track { background: rgba(255,255,255,.03); }
+    .testi-track::-webkit-scrollbar-thumb { background: var(--copper); border-radius: 2px; }
 
     /* ── WA MOCKUP ── */
     .wa-mock {
       background: #0b1114;
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
-      flex: 0 0 220px;
+      flex: 0 0 215px;
       scroll-snap-align: start;
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
       font-family: 'Segoe UI', sans-serif;
-      box-shadow: 0 8px 32px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.05);
+      box-shadow: 0 8px 32px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04);
       transition: transform .3s;
     }
 
@@ -579,91 +570,75 @@
 
     .wa-header {
       background: #1f2c34;
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      padding: 10px 12px;
+      display: flex; align-items: center; gap: 9px;
     }
 
     .wa-avatar {
-      width: 36px; height: 36px;
+      width: 34px; height: 34px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--purple), var(--gold-dark));
+      background: linear-gradient(135deg, #5a3a8a, #c87941);
       display: flex; align-items: center; justify-content: center;
-      font-size: .85rem;
-      font-weight: 700;
-      color: #fff;
+      font-size: .8rem; font-weight: 700; color: #fff;
       flex-shrink: 0;
     }
 
     .wa-header-info { flex: 1; min-width: 0; }
-    .wa-name { font-size: .78rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .wa-status { font-size: .68rem; color: #8696a0; }
-    .wa-header-icons { display: flex; gap: 14px; }
-    .wa-header-icons svg { width: 18px; height: 18px; fill: #8696a0; }
+    .wa-name { font-size: .76rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .wa-status { font-size: .66rem; color: #8696a0; }
+    .wa-header-icons { display: flex; gap: 12px; }
+    .wa-header-icons svg { width: 17px; height: 17px; fill: #8696a0; }
 
     .wa-body {
       background: #0d1418;
       flex: 1;
-      padding: 12px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+      padding: 10px 9px;
+      display: flex; flex-direction: column;
+      gap: 5px;
     }
 
     .wa-date-divider {
       text-align: center;
-      font-size: .65rem;
+      font-size: .63rem;
       color: #8696a0;
       background: #1f2c34;
-      border-radius: 8px;
-      padding: 3px 10px;
+      border-radius: 6px;
+      padding: 3px 9px;
       align-self: center;
-      margin: 4px 0;
+      margin: 3px 0;
     }
 
     .wa-bubble {
       max-width: 88%;
-      padding: 7px 10px 18px;
-      border-radius: 10px;
-      font-size: .75rem;
+      padding: 7px 9px 18px;
+      border-radius: 9px;
+      font-size: .73rem;
       line-height: 1.45;
       position: relative;
       word-break: break-word;
     }
 
-    .wa-bubble.sent {
-      background: #005c4b;
-      color: #fff;
-      align-self: flex-end;
-      border-bottom-right-radius: 2px;
-    }
+    .wa-bubble.sent { background: #005c4b; color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
+    .wa-bubble.recv { background: #1f2c34; color: #e9edef; align-self: flex-start; border-bottom-left-radius: 2px; }
 
-    .wa-bubble.recv {
-      background: #1f2c34;
-      color: #e9edef;
-      align-self: flex-start;
-      border-bottom-left-radius: 2px;
-    }
-
-    .wa-bubble .wa-time {
+    .wa-time {
       position: absolute;
-      bottom: 4px; right: 8px;
-      font-size: .6rem;
-      color: rgba(255,255,255,.55);
-      display: flex; align-items: center; gap: 3px;
+      bottom: 4px; right: 7px;
+      font-size: .58rem;
+      color: rgba(255,255,255,.5);
+      display: flex; align-items: center; gap: 2px;
     }
 
     .wa-bubble.sent .wa-time { color: #53bdeb; }
-    .wa-check { width: 14px; height: 14px; fill: #53bdeb; }
+    .wa-check { width: 13px; height: 13px; fill: #53bdeb; }
 
     .wa-video-thumb {
       width: 100%;
       aspect-ratio: 9/12;
-      background: linear-gradient(160deg, #1a2a35 0%, #0d1418 100%);
+      background: #1a2a35;
       background-size: cover;
       background-position: center;
-      border-radius: 8px;
+      border-radius: 7px;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       margin-bottom: 4px;
@@ -675,203 +650,197 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,.35);
-      border-radius: 8px;
+      background: rgba(0,0,0,.32);
+      border-radius: 7px;
     }
 
     .wa-video-thumb .play-icon,
     .wa-video-thumb .vid-label,
-    .wa-video-thumb .vid-duration {
-      position: relative;
-      z-index: 1;
-    }
+    .wa-video-thumb .vid-duration { position: relative; z-index: 1; }
 
     .wa-video-thumb .play-icon {
-      width: 36px; height: 36px;
+      width: 34px; height: 34px;
       background: rgba(255,255,255,.2);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(4px);
     }
 
-    .wa-video-thumb .play-icon svg { width: 18px; height: 18px; fill: #fff; margin-left: 2px; }
-    .wa-video-thumb .vid-label { font-size: .65rem; color: rgba(255,255,255,.6); margin-top: 8px; }
+    .wa-video-thumb .play-icon svg { width: 16px; height: 16px; fill: #fff; margin-left: 2px; }
+    .wa-video-thumb .vid-label { font-size: .62rem; color: rgba(255,255,255,.7); margin-top: 7px; }
     .wa-video-thumb .vid-duration {
-      position: absolute; bottom: 6px; left: 8px;
-      font-size: .62rem; color: #fff;
-      background: rgba(0,0,0,.5); padding: 1px 5px; border-radius: 4px;
+      position: absolute; bottom: 5px; left: 7px;
+      font-size: .6rem; color: #fff;
+      background: rgba(0,0,0,.5); padding: 1px 5px; border-radius: 3px;
+      z-index: 1;
     }
 
     .wa-footer {
       background: #1f2c34;
-      padding: 8px 12px;
-      display: flex; align-items: center; gap: 10px;
+      padding: 7px 10px;
+      display: flex; align-items: center; gap: 9px;
     }
 
-    .wa-footer svg { width: 20px; height: 20px; fill: #8696a0; }
+    .wa-footer svg { width: 18px; height: 18px; fill: #8696a0; }
     .wa-input-bar {
-      flex: 1;
-      background: #2a3942;
-      border-radius: 20px;
-      padding: 7px 12px;
-      font-size: .72rem;
-      color: #8696a0;
+      flex: 1; background: #2a3942;
+      border-radius: 18px; padding: 6px 11px;
+      font-size: .7rem; color: #8696a0;
     }
 
     /* ── HOW IT WORKS ── */
-    #como {
-      padding: 80px 24px;
-      text-align: center;
-    }
+    #como { padding: 90px 24px; }
 
     .steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      max-width: 820px;
-      margin: 48px auto 0;
-      position: relative;
+      gap: 14px;
+      max-width: 860px;
+      margin: 52px auto 0;
     }
 
     .step {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 10px;
       padding: 36px 24px;
-      position: relative;
       transition: all .3s;
-    }
-
-    .step:hover {
-      border-color: rgba(212,168,67,.4);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(107,79,160,.2);
-    }
-
-    .step-num {
-      width: 52px; height: 52px;
-      background: linear-gradient(135deg, rgba(212,168,67,.15), rgba(212,168,67,.05));
-      border: 1.5px solid rgba(212,168,67,.4);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 900;
-      color: var(--gold);
-      margin: 0 auto 20px;
-    }
-
-    .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
-    .step p { font-size: .88rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
-
-    /* ── GUARANTEE ── */
-    #garantia {
-      padding: 60px 24px;
-    }
-
-    .guarantee-box {
-      background: linear-gradient(135deg, rgba(212,168,67,.08), rgba(107,79,160,.06));
-      border: 1px solid rgba(212,168,67,.2);
-      border-radius: 24px;
-      padding: 48px 40px;
-      max-width: 700px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-
-    .guarantee-icon { font-size: 3.5rem; flex-shrink: 0; }
-
-    .guarantee-text h3 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--gold-light);
-      margin-bottom: 10px;
-    }
-
-    .guarantee-text p { color: var(--muted); font-size: .95rem; line-height: 1.7; font-weight: 300; }
-
-    /* ── CTA FINAL ── */
-    #cta-final {
-      padding: 100px 24px;
       text-align: center;
     }
 
-    .cta-box {
+    .step:hover {
+      border-color: rgba(200,121,65,.3);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+    }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: rgba(200,121,65,.2);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .step h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .step p { font-size: .86rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+    /* ── GUARANTEE ── */
+    #garantia { padding: 70px 24px; }
+
+    .guarantee-inner {
+      background: var(--card2);
+      border: 1px solid rgba(200,121,65,.15);
+      border-radius: 12px;
+      padding: 52px 48px;
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+
+    .guarantee-icon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      color: var(--copper);
+      opacity: .7;
+      flex-shrink: 0;
+    }
+
+    .guarantee-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--copper-light);
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+
+    .guarantee-text p { color: var(--muted); font-size: .93rem; line-height: 1.8; font-weight: 300; }
+
+    /* ── CTA FINAL ── */
+    #cta-final { padding: 110px 24px; text-align: center; }
+
+    .cta-inner {
       max-width: 680px;
       margin: 0 auto;
       position: relative;
     }
 
-    .cta-box::before {
+    .cta-inner::before {
       content: '';
       position: absolute;
-      top: -80px; left: 50%;
+      top: -100px; left: 50%;
       transform: translateX(-50%);
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(107,79,160,.25), transparent 70%);
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(200,121,65,.1), transparent 70%);
       pointer-events: none;
       z-index: -1;
     }
 
-    .cta-box h2 {
-      font-size: clamp(2rem, 5.5vw, 3.2rem);
-      color: #fff;
-      line-height: 1.15;
-      margin-bottom: 16px;
+    .cta-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 18px;
+      letter-spacing: -.01em;
     }
 
-    .cta-box p {
-      color: var(--muted);
-      margin-bottom: 40px;
-      font-size: 1rem;
-      font-weight: 300;
-    }
+    .cta-inner h2 em { font-style: italic; color: var(--copper-light); }
+
+    .cta-inner p { color: var(--muted); margin-bottom: 40px; font-size: 1rem; font-weight: 300; line-height: 1.7; }
 
     /* ── FOOTER ── */
     footer {
       text-align: center;
       padding: 32px 24px;
-      color: #444;
-      font-size: .82rem;
+      color: #3a3a4a;
+      font-size: .8rem;
       border-top: 1px solid rgba(255,255,255,.04);
+      letter-spacing: .06em;
     }
 
-    footer span { color: var(--gold); }
+    footer em { color: var(--copper); font-style: normal; }
 
     /* ── WA FAB ── */
     .whatsapp-fab {
       position: fixed;
       bottom: 28px; right: 28px;
-      width: 60px; height: 60px;
-      background: linear-gradient(135deg, #25d366, #128c50);
+      width: 58px; height: 58px;
+      background: var(--green);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 24px rgba(37,211,102,.45);
+      box-shadow: 0 4px 24px rgba(37,211,102,.4);
       z-index: 999;
       text-decoration: none;
       transition: transform .2s, box-shadow .2s;
     }
 
-    .whatsapp-fab:hover {
-      transform: scale(1.12);
-      box-shadow: 0 8px 32px rgba(37,211,102,.6);
-    }
-
-    .whatsapp-fab svg { width: 32px; height: 32px; fill: #fff; }
+    .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,.55); }
+    .whatsapp-fab svg { width: 30px; height: 30px; fill: #fff; }
 
     /* ── MODAL ── */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.9);
+      background: rgba(0,0,0,.92);
       z-index: 9999;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
     }
 
     .modal-overlay.open { display: flex; }
@@ -879,185 +848,115 @@
     .modal-box {
       background: var(--card2);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 14px;
       padding: 24px;
       width: 100%;
-      max-width: 400px;
+      max-width: 380px;
       position: relative;
     }
 
     .modal-close {
       position: absolute;
-      top: 14px; right: 18px;
+      top: 12px; right: 16px;
       background: none; border: none;
-      color: var(--muted); font-size: 1.4rem;
-      cursor: pointer;
-      transition: color .2s;
+      color: var(--muted); font-size: 1.3rem;
+      cursor: pointer; transition: color .2s;
     }
 
-    .modal-close:hover { color: #fff; }
+    .modal-close:hover { color: var(--cream); }
 
     .modal-placeholder {
       width: 100%;
       aspect-ratio: 9/16;
-      background: rgba(255,255,255,.03);
-      border-radius: 12px;
+      background: rgba(255,255,255,.02);
+      border-radius: 10px;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      color: var(--muted); font-size: .9rem; gap: 14px;
+      color: var(--muted); font-size: .88rem; gap: 12px;
     }
 
-    .modal-placeholder svg { width: 52px; height: 52px; fill: var(--gold); opacity: .5; }
+    .modal-placeholder svg { width: 48px; height: 48px; fill: var(--copper); opacity: .4; }
 
-    /* ── VIDEO PLAYER INLINE ── */
-    .pkg-video-wrap {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 9/16;
-      background: #000;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .pkg-video-wrap video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .pkg-video-wrap .vid-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(to top, rgba(12,10,20,.7) 0%, rgba(0,0,0,.2) 100%);
-      transition: opacity .3s;
-    }
-
-    .pkg-video-wrap.playing .vid-overlay,
-    #videoHero.playing .vid-overlay {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .pkg-video-wrap .vid-overlay .play-btn {
-      position: static;
-      transform: none;
-    }
-
-    .pkg-video-wrap:hover .vid-overlay .play-btn {
-      transform: scale(1.08);
-    }
-
-    .pkg-video-wrap .vid-label-text {
-      color: rgba(255,255,255,.85);
-      font-size: .78rem;
-      margin-top: 10px;
-      font-weight: 500;
-      letter-spacing: .04em;
-    }
-
-    /* ── ANIMATE ON SCROLL ── */
+    /* ── FADE UP ── */
     .fade-up {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity .7s ease, transform .7s ease;
+      transform: translateY(28px);
+      transition: opacity .75s ease, transform .75s ease;
     }
 
-    .fade-up.visible {
-      opacity: 1;
-      transform: none;
-    }
+    .fade-up.visible { opacity: 1; transform: none; }
 
     @media (max-width: 600px) {
       .packages-grid { grid-template-columns: 1fr; }
       .steps { grid-template-columns: 1fr; }
-      .guarantee-box { flex-direction: column; text-align: center; }
-      .social-proof { gap: 20px; }
-      .sp-sep { display: none; }
+      .guarantee-inner { flex-direction: column; text-align: center; padding: 36px 24px; }
+      .stat-item { min-width: 110px; }
+      .promise-box { padding: 40px 24px; }
     }
   </style>
 </head>
 <body>
 
-<canvas id="stars-canvas"></canvas>
+<canvas id="bg-canvas"></canvas>
 
 <!-- ── NAV ── -->
 <nav>
-  <div class="nav-logo">✦ Homenagem Eterna</div>
+  <div class="nav-logo">Sempre <span>Presente</span></div>
   <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20saber%20mais%20sobre%20as%20homenagens" class="nav-cta" target="_blank">Falar no WhatsApp</a>
 </nav>
 
 <!-- ── HERO ── -->
 <section id="hero">
-  <div class="badge">✦ Homenagem em Vídeo Personalizada</div>
-  <h1>Eternize a memória de <em>quem você ama</em></h1>
-  <p class="subtitle">Transformamos uma simples fotografia em uma homenagem emocionante e inesquecível.</p>
+  <div class="eyebrow">Homenagem em Vídeo</div>
+  <h1>A memória de quem você ama<br><em>merece durar para sempre</em></h1>
+  <p class="subtitle">Criamos homenagens em vídeo únicas e emocionantes para que você nunca esqueça quem partiu.</p>
 
   <div class="hero-actions">
-    <a href="#homenagens" class="btn btn-gold">Ver homenagens ↓</a>
-    <a href="#como" class="btn btn-outline">Como funciona</a>
+    <a href="#homenagens" class="btn btn-primary">Ver homenagens</a>
+    <a href="#como" class="btn btn-ghost">Como funciona</a>
   </div>
 
-  <div class="video-thumb" id="videoHero" onclick="playInline(this)" style="max-width:280px">
-    <video
-      id="vidHero"
-      src="video-despedida.mp4"
-      preload="none"
-      playsinline
-      webkit-playsinline
-      x5-playsinline
-      loop
-      poster="poster-hero.jpg"
-      style="width:100%;display:block;border-radius:24px"
-    ></video>
-    <div class="vid-overlay" style="border-radius:24px;position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
-      <div class="play-btn" style="position:static;transform:none">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </div>
+  <div class="hero-video-wrap" id="videoHero" onclick="playInline(this)">
+    <video id="vidHero" src="video-despedida.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-hero.jpg"></video>
+    <div class="vid-overlay">
+      <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     </div>
   </div>
-  <p class="video-caption">▶ Assista ao exemplo e veja como fica emocionante</p>
+  <p class="video-caption">Assista e sinta como fica emocionante</p>
 </section>
 
-<!-- ── SOCIAL PROOF ── -->
-<div class="social-proof fade-up">
-  <div class="sp-item">
-    <span class="sp-num">500+</span>
-    <span class="sp-label">Famílias<br>atendidas</span>
+<!-- ── STATS ── -->
+<div class="stats-bar fade-up">
+  <div class="stat-item">
+    <span class="stat-num">600+</span>
+    <span class="stat-label">Famílias atendidas</span>
   </div>
-  <div class="sp-sep"></div>
-  <div class="sp-item">
-    <span class="sp-num">⭐ 5.0</span>
-    <span class="sp-label">Avaliação<br>média</span>
+  <div class="stat-item">
+    <span class="stat-num">⭐ 5.0</span>
+    <span class="stat-label">Avaliação dos clientes</span>
   </div>
-  <div class="sp-sep"></div>
-  <div class="sp-item">
-    <span class="sp-num">24h</span>
-    <span class="sp-label">Entrega<br>rápida</span>
+  <div class="stat-item">
+    <span class="stat-num">24h</span>
+    <span class="stat-label">Prazo de entrega</span>
   </div>
-  <div class="sp-sep"></div>
-  <div class="sp-item">
-    <span class="sp-num">100%</span>
-    <span class="sp-label">Feito com<br>carinho ❤️</span>
+  <div class="stat-item">
+    <span class="stat-num">100%</span>
+    <span class="stat-label">Feito com amor</span>
   </div>
 </div>
 
 <!-- ── WHO ── -->
 <section id="quem">
   <div class="container fade-up" style="text-align:center">
-    <p class="section-label">Para quem é esta homenagem?</p>
-    <h2 class="section-title">Quem você gostaria<br>de homenagear?</h2>
-    <div class="category-grid">
-      <button class="cat-btn active" onclick="selectCat(this)">❤️ Pai</button>
-      <button class="cat-btn" onclick="selectCat(this)">❤️ Mãe</button>
-      <button class="cat-btn" onclick="selectCat(this)">❤️ Avós</button>
-      <button class="cat-btn" onclick="selectCat(this)">❤️ Esposo(a)</button>
-      <button class="cat-btn" onclick="selectCat(this)">❤️ Amigo(a)</button>
-      <button class="cat-btn" onclick="selectCat(this)">❤️ Outro familiar</button>
+    <span class="s-label">Para quem é esta homenagem?</span>
+    <h2 class="s-title">Quem você deseja<br>homenagear?</h2>
+    <div class="cat-grid">
+      <button class="cat-btn active" onclick="selectCat(this)">🕊 Pai</button>
+      <button class="cat-btn" onclick="selectCat(this)">🕊 Mãe</button>
+      <button class="cat-btn" onclick="selectCat(this)">🕊 Avós</button>
+      <button class="cat-btn" onclick="selectCat(this)">🕊 Esposo(a)</button>
+      <button class="cat-btn" onclick="selectCat(this)">🕊 Amigo(a)</button>
+      <button class="cat-btn" onclick="selectCat(this)">🕊 Outro familiar</button>
     </div>
   </div>
 </section>
@@ -1066,173 +965,133 @@
 <section id="homenagens">
   <div class="container">
     <div style="text-align:center" class="fade-up">
-      <p class="section-label">Escolha sua homenagem</p>
-      <h2 class="section-title">Uma homenagem para<br>cada momento</h2>
-      <p class="section-sub">Selecione o tipo de homenagem que deseja criar.</p>
+      <span class="s-label">Escolha sua homenagem</span>
+      <h2 class="s-title">Uma homenagem pensada<br>para cada história</h2>
+      <p class="s-sub">Cada opção é criada com atenção e respeito pela memória de quem você ama.</p>
     </div>
 
     <div class="packages-grid">
 
+      <!-- Simples -->
       <div class="pkg-card fade-up">
-        <div class="pkg-video-wrap" id="videoSimples" onclick="playInline(this)">
-          <video
-            id="vidSimples"
-            src="video-simples.mp4"
-            preload="none"
-            playsinline
-            webkit-playsinline
-            x5-playsinline
-            loop
-            poster="poster-simples.jpg"
-          ></video>
+        <div class="pkg-video-wrap" onclick="playInline(this)">
+          <video src="video-simples.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-simples.jpg"></video>
           <div class="vid-overlay">
             <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <span class="vid-label-text">▶ Ver exemplo</span>
+            <span class="vid-label-text">Ver exemplo</span>
           </div>
         </div>
         <div class="pkg-body">
           <h3>Homenagem Simples</h3>
-          <p class="desc">Uma cena emocionante e especial para guardar para sempre.</p>
+          <p class="desc">Uma cena tocante e especial que ficará guardada para sempre no coração da família.</p>
           <ul class="features">
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Abraço especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Abraço especial</li>
           </ul>
-          <div class="price">R$ 50,00</div>
+          <div class="price">R$ 50<span>,00</span></div>
           <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20Simples%20-%20R$50" class="btn btn-green" target="_blank">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-            Solicitar Simples
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+            Solicitar Homenagem
           </a>
         </div>
       </div>
 
+      <!-- Completa -->
       <div class="pkg-card featured fade-up">
-        <div class="pkg-badge">Mais Popular</div>
-        <div class="pkg-video-wrap" id="videoCompleta" onclick="playInline(this)">
-          <video
-            id="vidCompleta"
-            src="video-completa.mp4"
-            preload="none"
-            playsinline
-            webkit-playsinline
-            x5-playsinline
-            loop
-            poster="poster-completa.jpg"
-          ></video>
+        <div class="pkg-badge">Mais Escolhida</div>
+        <div class="pkg-video-wrap" onclick="playInline(this)">
+          <video src="video-completa.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-completa.jpg"></video>
           <div class="vid-overlay">
             <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <span class="vid-label-text">▶ Ver exemplo</span>
+            <span class="vid-label-text">Ver exemplo</span>
           </div>
         </div>
         <div class="pkg-body">
           <h3>Homenagem Completa</h3>
-          <p class="desc">Uma cena completa com encontro e final especial emocionante.</p>
+          <p class="desc">Uma narrativa emocionante do reencontro com um final que toca a alma de quem assiste.</p>
           <ul class="features">
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena de encontro</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Abraço especial</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena de reencontro</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Abraço especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final emocionante</li>
           </ul>
-          <div class="price">R$ 60,00</div>
+          <div class="price">R$ 60<span>,00</span></div>
           <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20Completa%20-%20R$60" class="btn btn-green" target="_blank">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-            Solicitar Completa
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+            Solicitar Homenagem
           </a>
         </div>
       </div>
 
+      <!-- Despedida -->
       <div class="pkg-card fade-up">
-        <div class="pkg-video-wrap" id="videoDespedida" onclick="playInline(this)">
-          <video
-            id="vidDespedida"
-            src="video-despedida.mp4"
-            preload="none"
-            playsinline
-            webkit-playsinline
-            x5-playsinline
-            loop
-            poster="poster-despedida.jpg"
-          ></video>
+        <div class="pkg-video-wrap" onclick="playInline(this)">
+          <video src="video-despedida.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-despedida.jpg"></video>
           <div class="vid-overlay">
             <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <span class="vid-label-text">▶ Ver exemplo</span>
+            <span class="vid-label-text">Ver exemplo</span>
           </div>
         </div>
         <div class="pkg-body">
           <h3>Despedida Especial</h3>
-          <p class="desc">Uma homenagem emocionante com uma cena especial e personalizada.</p>
+          <p class="desc">Uma homenagem íntima e personalizada para expressar o amor que não cabe em palavras.</p>
           <ul class="features">
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial de despedida</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial de despedida</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final especial</li>
           </ul>
-          <div class="price">R$ 75,00</div>
+          <div class="price">R$ 75<span>,00</span></div>
           <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Despedida%20Especial%20-%20R$75" class="btn btn-green" target="_blank">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-            Solicitar Despedida
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+            Solicitar Homenagem
           </a>
         </div>
       </div>
 
+      <!-- A Dois -->
       <div class="pkg-card fade-up">
-        <div class="pkg-video-wrap" id="videoAdois" onclick="playInline(this)">
-          <video
-            id="vidAdois"
-            src="video-adois.mp4"
-            preload="none"
-            playsinline
-            webkit-playsinline
-            x5-playsinline
-            loop
-            poster="poster-adois.jpg"
-          ></video>
+        <div class="pkg-video-wrap" onclick="playInline(this)">
+          <video src="video-adois.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-adois.jpg"></video>
           <div class="vid-overlay">
             <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <span class="vid-label-text">▶ Ver exemplo</span>
+            <span class="vid-label-text">Ver exemplo</span>
           </div>
         </div>
         <div class="pkg-body">
           <h3>Homenagem a Dois</h3>
-          <p class="desc">Uma homenagem especial criada para duas pessoas juntas.</p>
+          <p class="desc">Para honrar dois amores ao mesmo tempo, numa homenagem que une corações.</p>
           <ul class="features">
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Duas pessoas</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Duas pessoas</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final especial</li>
           </ul>
-          <div class="price">R$ 80,00</div>
+          <div class="price">R$ 80<span>,00</span></div>
           <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20a%20Dois%20-%20R$80" class="btn btn-green" target="_blank">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-            Solicitar A Dois
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+            Solicitar Homenagem
           </a>
         </div>
       </div>
 
+      <!-- Encontro -->
       <div class="pkg-card fade-up">
-        <div class="pkg-video-wrap" id="videoEncontro" onclick="playInline(this)">
-          <video
-            id="vidEncontro"
-            src="video-encontro.mp4"
-            preload="none"
-            playsinline
-            webkit-playsinline
-            x5-playsinline
-            loop
-            poster="poster-encontro.jpg"
-          ></video>
+        <div class="pkg-video-wrap" onclick="playInline(this)">
+          <video src="video-encontro.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-encontro.jpg"></video>
           <div class="vid-overlay">
             <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <span class="vid-label-text">▶ Ver exemplo</span>
+            <span class="vid-label-text">Ver exemplo</span>
           </div>
         </div>
         <div class="pkg-body">
           <h3>Homenagem de Encontro</h3>
-          <p class="desc">Um momento único e especial de encontro inesquecível.</p>
+          <p class="desc">O momento mágico do reencontro, capturado em imagens que guardam a essência de quem partiu.</p>
           <ul class="features">
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Momento de encontro</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena especial</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Momento de reencontro</li>
+            <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final especial</li>
           </ul>
-          <div class="price">R$ 80,00</div>
+          <div class="price">R$ 80<span>,00</span></div>
           <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20de%20Encontro%20-%20R$80" class="btn btn-green" target="_blank">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-            Solicitar Encontro
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.397.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+            Solicitar Homenagem
           </a>
         </div>
       </div>
@@ -1241,13 +1100,13 @@
   </div>
 </section>
 
-<!-- ── SCARCITY ── -->
-<section id="escassez">
-  <div class="scarcity-box fade-up">
-    <div class="icon">✨</div>
-    <h2>Cada homenagem é única</h2>
-    <p>Porque algumas pessoas deixam uma marca tão profunda no coração, que merecem ser lembradas para sempre. Cada homenagem é criada com amor, atenção e cuidado — para que a memória de quem você ama viva eternamente.</p>
-    <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20fazer%20minha%20homenagem" class="btn btn-gold" target="_blank">Faça já sua homenagem →</a>
+<!-- ── PROMISE ── -->
+<section id="promessa">
+  <div class="promise-box fade-up">
+    <div class="ornament">❝</div>
+    <h2>Porque algumas pessoas deixam uma marca tão profunda no coração, que merecem ser lembradas para sempre.</h2>
+    <p>Cada homenagem é criada com amor, atenção e cuidado — para que a memória de quem você ama viva eternamente em cada detalhe.</p>
+    <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20fazer%20minha%20homenagem" class="btn btn-primary" target="_blank">Faça já sua homenagem</a>
   </div>
 </section>
 
@@ -1255,20 +1114,17 @@
 <section id="depoimentos">
   <div class="container">
     <div style="text-align:center" class="fade-up">
-      <p class="section-label">Depoimentos reais</p>
-      <h2 class="section-title">O que nossos clientes dizem</h2>
-      <p class="section-sub">Mensagens reais de famílias que confiaram em nosso trabalho.</p>
+      <span class="s-label">Depoimentos reais</span>
+      <h2 class="s-title">Famílias que confiaram<br>em nosso trabalho</h2>
+      <p class="s-sub">Mensagens reais de quem já viveu essa experiência.</p>
     </div>
 
-    <div class="testimonials-track">
+    <div class="testi-track">
 
       <div class="wa-mock">
         <div class="wa-header">
           <div class="wa-avatar">P</div>
-          <div class="wa-header-info">
-            <div class="wa-name">Patrícia Cliente</div>
-            <div class="wa-status">online</div>
-          </div>
+          <div class="wa-header-info"><div class="wa-name">Patrícia Cliente</div><div class="wa-status">online</div></div>
           <div class="wa-header-icons">
             <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
@@ -1286,7 +1142,7 @@
             <span class="wa-time">09:16<svg class="wa-check" viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34-2.83-2.83L6 10.52l4.24 4.24L18 7zm-8 9l-4.24-4.24-1.41 1.41L10 18.83 21.41 7.41 20 6l-10 10z"/></svg></span>
           </div>
           <div class="wa-bubble recv">Ficou muito mais lindo do que eu imaginava.<span class="wa-time">09:22</span></div>
-          <div class="wa-bubble recv">Meu Deus... quando apareceu minha mãe no vídeo eu chorei demais. Todo mundo chorou aqui em casa. 😭<span class="wa-time">09:33</span></div>
+          <div class="wa-bubble recv">Quando apareceu minha mãe no vídeo eu chorei demais. Todo mundo chorou aqui em casa. 😭<span class="wa-time">09:33</span></div>
         </div>
         <div class="wa-footer">
           <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
@@ -1298,10 +1154,7 @@
       <div class="wa-mock">
         <div class="wa-header">
           <div class="wa-avatar">M</div>
-          <div class="wa-header-info">
-            <div class="wa-name">Maria Cliente</div>
-            <div class="wa-status">visto às 22:04</div>
-          </div>
+          <div class="wa-header-info"><div class="wa-name">Maria Cliente</div><div class="wa-status">visto às 22:04</div></div>
           <div class="wa-header-icons">
             <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
@@ -1331,10 +1184,7 @@
       <div class="wa-mock">
         <div class="wa-header">
           <div class="wa-avatar">S</div>
-          <div class="wa-header-info">
-            <div class="wa-name">Sandra Cliente</div>
-            <div class="wa-status">online</div>
-          </div>
+          <div class="wa-header-info"><div class="wa-name">Sandra Cliente</div><div class="wa-status">online</div></div>
           <div class="wa-header-icons">
             <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
@@ -1364,10 +1214,7 @@
       <div class="wa-mock">
         <div class="wa-header">
           <div class="wa-avatar">A</div>
-          <div class="wa-header-info">
-            <div class="wa-name">Ana Cliente</div>
-            <div class="wa-status">online</div>
-          </div>
+          <div class="wa-header-info"><div class="wa-name">Ana Cliente</div><div class="wa-status">online</div></div>
           <div class="wa-header-icons">
             <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
@@ -1402,25 +1249,25 @@
 <section id="como">
   <div class="container">
     <div style="text-align:center" class="fade-up">
-      <p class="section-label">Simples e rápido</p>
-      <h2 class="section-title">Como funciona</h2>
-      <p class="section-sub">Em apenas 3 passos a homenagem fica pronta.</p>
+      <span class="s-label">Simples e rápido</span>
+      <h2 class="s-title">Como funciona</h2>
+      <p class="s-sub">Em três passos simples, a homenagem da sua vida fica pronta.</p>
     </div>
     <div class="steps">
       <div class="step fade-up">
-        <div class="step-num">1</div>
+        <div class="step-num">01</div>
         <h3>Escolha a homenagem</h3>
-        <p>Selecione o tipo de homenagem que melhor representa o que você sente.</p>
+        <p>Selecione o tipo de homenagem que melhor expressa o amor que você sente por quem partiu.</p>
       </div>
       <div class="step fade-up">
-        <div class="step-num">2</div>
-        <h3>Envie a foto</h3>
-        <p>Envie uma foto da pessoa pelo WhatsApp. Quanto melhor a foto, mais bonito fica.</p>
+        <div class="step-num">02</div>
+        <h3>Envie a fotografia</h3>
+        <p>Mande uma foto da pessoa pelo WhatsApp. Quanto mais bonita a foto, mais emocionante fica o vídeo.</p>
       </div>
       <div class="step fade-up">
-        <div class="step-num">3</div>
-        <h3>Receba o vídeo</h3>
-        <p>Em até 24h você recebe o vídeo pronto para compartilhar com a família.</p>
+        <div class="step-num">03</div>
+        <h3>Receba e se emocione</h3>
+        <p>Em até 24 horas você recebe o vídeo pronto para guardar e compartilhar com quem você ama.</p>
       </div>
     </div>
   </div>
@@ -1429,11 +1276,11 @@
 <!-- ── GUARANTEE ── -->
 <section id="garantia">
   <div class="container fade-up">
-    <div class="guarantee-box">
-      <div class="guarantee-icon">🕊️</div>
+    <div class="guarantee-inner">
+      <div class="guarantee-icon">🕊</div>
       <div class="guarantee-text">
-        <h3>Feito com amor e respeito</h3>
-        <p>Entendemos que cada homenagem carrega uma história única e preciosa. Por isso, cada vídeo é produzido com o máximo de cuidado, respeito e carinho pela memória de quem você ama.</p>
+        <h3>Criado com amor e respeito</h3>
+        <p>Sabemos o quanto é difícil lidar com a saudade de quem partiu. Por isso, cada vídeo é produzido com profundo respeito, cuidado e delicadeza — porque a memória de quem você ama merece ser honrada da melhor forma possível.</p>
       </div>
     </div>
   </div>
@@ -1441,19 +1288,19 @@
 
 <!-- ── CTA FINAL ── -->
 <section id="cta-final">
-  <div class="cta-box fade-up">
-    <p class="section-label" style="justify-content:center;display:flex">Uma lembrança para sempre</p>
-    <h2>Uma homenagem que ficará para sempre na memória da sua família.</h2>
-    <p>Transforme uma simples fotografia em uma lembrança emocionante e eterna.</p>
-    <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20solicitar%20minha%20homenagem" class="btn btn-gold" target="_blank" style="font-size:1.05rem;padding:16px 36px">
-      ✦ Solicitar minha homenagem
+  <div class="cta-inner fade-up">
+    <span class="s-label" style="display:block;margin-bottom:14px">Uma lembrança para sempre</span>
+    <h2>Transforme a saudade em uma <em>homenagem eterna</em></h2>
+    <p>Uma simples fotografia pode se tornar a lembrança mais emocionante que sua família já viveu.</p>
+    <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20solicitar%20minha%20homenagem" class="btn btn-primary" target="_blank" style="font-size:1rem;padding:16px 40px">
+      Criar minha homenagem agora
     </a>
   </div>
 </section>
 
 <!-- ── FOOTER ── -->
 <footer>
-  <span>✦ Homenagem Eterna</span> · Homenagens em vídeo personalizadas · Atendimento via WhatsApp
+  <em>Sempre Presente</em> · Homenagens em vídeo personalizadas · Atendimento via WhatsApp
 </footer>
 
 <!-- ── WA FAB ── -->
@@ -1461,78 +1308,59 @@
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- ── VIDEO MODAL ── -->
-<div class="modal-overlay" id="videoModal" onclick="closeModalOnOverlay(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-placeholder">
-      <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      <span>Adicione seu vídeo de demonstração aqui.</span>
-    </div>
-  </div>
-</div>
-
 <script>
-  // ── Stars canvas ──
-  const canvas = document.getElementById('stars-canvas');
+  // ── Floating particles canvas ──
+  const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
-  let stars = [];
+  let particles = [];
 
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 
-  function initStars() {
-    stars = [];
-    for (let i = 0; i < 180; i++) {
-      stars.push({
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < 120; i++) {
+      particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        r: Math.random() * 1.2 + 0.2,
-        alpha: Math.random(),
-        speed: Math.random() * 0.004 + 0.001,
-        phase: Math.random() * Math.PI * 2
+        r: Math.random() * 1.4 + 0.2,
+        alpha: Math.random() * .6 + .1,
+        speed: Math.random() * .003 + .001,
+        phase: Math.random() * Math.PI * 2,
+        vy: -(Math.random() * .15 + .05)
       });
     }
   }
 
-  function drawStars(t) {
+  function draw(t) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(s => {
-      const a = s.alpha * (0.5 + 0.5 * Math.sin(t * s.speed + s.phase));
+    particles.forEach(p => {
+      p.y += p.vy;
+      if (p.y < -5) p.y = canvas.height + 5;
+      const a = p.alpha * (0.5 + 0.5 * Math.sin(t * p.speed + p.phase));
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${a})`;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200,180,140,${a})`;
       ctx.fill();
     });
-    requestAnimationFrame(drawStars);
+    requestAnimationFrame(draw);
   }
 
   resize();
-  initStars();
-  window.addEventListener('resize', () => { resize(); initStars(); });
-  requestAnimationFrame(drawStars);
+  initParticles();
+  window.addEventListener('resize', () => { resize(); initParticles(); });
+  requestAnimationFrame(draw);
 
-  // ── Inline video player ──
+  // ── Video player ──
   function playInline(wrap) {
     const vid = wrap.querySelector('video');
+    if (!vid) return;
     if (vid.paused) {
-      vid.play().then(() => {
-        wrap.classList.add('playing');
-      }).catch(() => {});
+      vid.play().then(() => wrap.classList.add('playing')).catch(() => {});
     } else {
       vid.pause();
       wrap.classList.remove('playing');
     }
   }
-
-  // Reexibe overlay ao terminar (se não tiver loop)
-  document.querySelectorAll('.pkg-video-wrap video, #videoHero video').forEach(vid => {
-    vid.addEventListener('ended', () => {
-      vid.closest('.pkg-video-wrap, #videoHero').classList.remove('playing');
-    });
-  });
 
   // ── Category buttons ──
   function selectCat(btn) {
@@ -1540,27 +1368,10 @@
     btn.classList.add('active');
   }
 
-  // ── Modal ──
-  function openModal() {
-    document.getElementById('videoModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    document.getElementById('videoModal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function closeModalOnOverlay(e) {
-    if (e.target === document.getElementById('videoModal')) closeModal();
-  }
-
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
   // ── Fade on scroll ──
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
