@@ -1507,16 +1507,31 @@
   window.addEventListener('resize', () => { resize(); initParticles(); });
   if (animRunning) requestAnimationFrame(draw);
 
+  // ── Audio unlock ──
+  let audioUnlocked = false;
+  function unlockAudio() {
+    if (audioUnlocked) return Promise.resolve();
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const buf = ctx.createBuffer(1, 1, 22050);
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    src.connect(ctx.destination);
+    src.start(0);
+    return ctx.resume().then(() => { audioUnlocked = true; });
+  }
+
   // ── Video player ──
   function playInline(wrap) {
     const vid = wrap.querySelector('video');
     if (!vid) return;
     if (vid.paused) {
-      vid.muted = false;
-      vid.volume = 1;
-      vid.play().then(() => wrap.classList.add('playing')).catch(() => {
-        vid.muted = true;
-        vid.play().then(() => wrap.classList.add('playing')).catch(() => {});
+      unlockAudio().finally(() => {
+        vid.muted = false;
+        vid.volume = 1;
+        vid.play().then(() => wrap.classList.add('playing')).catch(() => {
+          vid.muted = true;
+          vid.play().then(() => wrap.classList.add('playing')).catch(() => {});
+        });
       });
     } else {
       vid.pause();
