@@ -1512,7 +1512,12 @@
     const vid = wrap.querySelector('video');
     if (!vid) return;
     if (vid.paused) {
-      vid.play().then(() => wrap.classList.add('playing')).catch(() => {});
+      vid.muted = false;
+      vid.volume = 1;
+      vid.play().then(() => wrap.classList.add('playing')).catch(() => {
+        vid.muted = true;
+        vid.play().then(() => wrap.classList.add('playing')).catch(() => {});
+      });
     } else {
       vid.pause();
       wrap.classList.remove('playing');
