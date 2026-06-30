@@ -1567,6 +1567,50 @@
   }, { threshold: 0.08 });
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Exit intent popup ──
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwZeDCiMITGy9BftDvZcbZhFF1z6ElAiLoQwsuHcMAXQ11yHlcRuKweE0HIplzYgKnv/exec';
+
+  const popupHTML = `
+  <div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;align-items:center;justify-content:center;">
+    <div style="background:#1a1528;border:1px solid #b8860b;border-radius:16px;padding:36px 32px;max-width:420px;width:90%;text-align:center;position:relative;">
+      <button onclick="closeExitPopup()" style="position:absolute;top:12px;right:16px;background:none;border:none;color:#aaa;font-size:22px;cursor:pointer;">✕</button>
+      <div style="font-size:2rem;margin-bottom:8px;">🕊️</div>
+      <h2 style="color:#d4a843;font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:8px;">Antes de ir...</h2>
+      <p style="color:#c8c0d8;font-size:.92rem;margin-bottom:20px;line-height:1.6;">Receba um <strong style="color:#d4a843;">exemplo gratuito</strong> de homenagem direto no seu WhatsApp e veja como fica emocionante.</p>
+      <input id="exit-nome" type="text" placeholder="Seu nome" style="width:100%;box-sizing:border-box;padding:12px;border-radius:8px;border:1px solid #b8860b;background:#0d0b14;color:#fff;margin-bottom:10px;font-size:.95rem;">
+      <input id="exit-wpp" type="tel" placeholder="WhatsApp (com DDD)" style="width:100%;box-sizing:border-box;padding:12px;border-radius:8px;border:1px solid #b8860b;background:#0d0b14;color:#fff;margin-bottom:16px;font-size:.95rem;">
+      <button onclick="submitExitLead()" style="width:100%;padding:13px;background:#25D366;border:none;border-radius:8px;color:#fff;font-size:1rem;font-weight:700;cursor:pointer;">📲 Quero receber o exemplo!</button>
+      <p id="exit-msg" style="margin-top:10px;font-size:.85rem;color:#d4a843;display:none;">✅ Recebido! Entraremos em contato em breve.</p>
+    </div>
+  </div>`;
+
+  document.body.insertAdjacentHTML('beforeend', popupHTML);
+
+  let exitShown = false;
+  document.addEventListener('mouseleave', e => {
+    if (e.clientY <= 0 && !exitShown) {
+      exitShown = true;
+      document.getElementById('exit-overlay').style.display = 'flex';
+    }
+  });
+
+  function closeExitPopup() {
+    document.getElementById('exit-overlay').style.display = 'none';
+  }
+
+  function submitExitLead() {
+    const nome = document.getElementById('exit-nome').value.trim();
+    const whatsapp = document.getElementById('exit-wpp').value.trim();
+    if (!nome || !whatsapp) { alert('Preencha nome e WhatsApp!'); return; }
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ nome, whatsapp }),
+      headers: { 'Content-Type': 'application/json' }
+    }).catch(() => {});
+    document.getElementById('exit-msg').style.display = 'block';
+    setTimeout(() => closeExitPopup(), 2500);
+  }
 </script>
 </body>
 </html>
