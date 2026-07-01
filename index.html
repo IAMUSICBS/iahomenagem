@@ -1630,18 +1630,9 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
     const nome = document.getElementById('exit-nome').value.trim();
     const whatsapp = document.getElementById('exit-wpp').value.trim();
     if (!nome || !whatsapp) { alert('Preencha nome e WhatsApp!'); return; }
-    const f = document.createElement('form');
-    f.method = 'GET';
-    f.action = SCRIPT_URL;
-    f.target = 'hidden-frame';
-    [['nome', nome], ['whatsapp', whatsapp]].forEach(([k, v]) => {
-      const i = document.createElement('input');
-      i.type = 'hidden'; i.name = k; i.value = v;
-      f.appendChild(i);
-    });
-    document.body.appendChild(f);
-    f.submit();
-    document.body.removeChild(f);
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', SCRIPT_URL + '?nome=' + encodeURIComponent(nome) + '&whatsapp=' + encodeURIComponent(whatsapp), true);
+    xhr.send();
     document.getElementById('exit-msg').style.display = 'block';
     setTimeout(() => closeExitPopup(), 2500);
   }
