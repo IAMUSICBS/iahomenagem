@@ -1631,7 +1631,7 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
     const whatsapp = document.getElementById('exit-wpp').value.trim();
     if (!nome || !whatsapp) { alert('Preencha nome e WhatsApp!'); return; }
     const params = new URLSearchParams({ nome, whatsapp });
-    new Image().src = SCRIPT_URL + '?' + params.toString();
+    fetch(SCRIPT_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' });
     document.getElementById('exit-msg').style.display = 'block';
     setTimeout(() => closeExitPopup(), 2500);
   }
