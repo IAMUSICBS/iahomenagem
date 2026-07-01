@@ -1596,7 +1596,7 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
   // ── Exit intent popup ──
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwZeDCiMITGy9BftDvZcbZhFF1z6ElAiLoQwsuHcMAXQ11yHlcRuKweE0HIplzYgKnv/exec';
+  const SCRIPT_URL = 'https://formspree.io/f/maqgpayd';
 
   const popupHTML = `
   <div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;align-items:center;justify-content:center;">
@@ -1631,8 +1631,9 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
     const whatsapp = document.getElementById('exit-wpp').value.trim();
     if (!nome || !whatsapp) { alert('Preencha nome e WhatsApp!'); return; }
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', SCRIPT_URL + '?nome=' + encodeURIComponent(nome) + '&whatsapp=' + encodeURIComponent(whatsapp), true);
-    xhr.send();
+    xhr.open('POST', SCRIPT_URL, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ nome, whatsapp }));
     document.getElementById('exit-msg').style.display = 'block';
     setTimeout(() => closeExitPopup(), 2500);
   }
