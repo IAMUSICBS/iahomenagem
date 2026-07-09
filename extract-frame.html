@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body style="background:#000;color:#fff;font-family:sans-serif;padding:20px">
+<h3>Extraindo primeiro frame...</h3>
+<canvas id="c" style="display:none"></canvas>
+<img id="preview" style="max-width:300px;border-radius:8px;margin-top:16px">
+<br><br>
+<a id="dl" style="color:#d4a843;font-size:1.1rem">⬇ Clique aqui para baixar o poster</a>
+<script>
+const video = document.createElement('video');
+video.src = 'video-simples.mp4';
+video.muted = true;
+video.crossOrigin = 'anonymous';
+video.preload = 'auto';
+
+video.addEventListener('loadeddata', () => {
+  video.currentTime = 0.01;
+});
+
+video.addEventListener('seeked', () => {
+  const canvas = document.getElementById('c');
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(video, 0, 0);
+  const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+  document.getElementById('preview').src = dataUrl;
+  const a = document.getElementById('dl');
+  a.href = dataUrl;
+  a.download = 'poster-simples.jpg';
+  a.textContent = '⬇ Clique aqui para baixar o poster';
+  document.querySelector('h3').textContent = '✅ Pronto! Baixe a imagem abaixo:';
+});
+
+video.load();
+</script>
+</body>
+</html>
