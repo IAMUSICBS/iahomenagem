@@ -28,7 +28,7 @@
       --copper: #c87941;
       --copper-light: #e09460;
       --cream: #f5efe8;
-      --muted: #8a8199;
+      --muted: #b8afc8;
       --bg: #07090f;
       --card: #0f1424;
       --card2: #131828;
@@ -316,8 +316,9 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      border-top: 1px solid rgba(245,239,232,.04);
-      border-bottom: 1px solid rgba(245,239,232,.04);
+      border-top: 1px solid rgba(245,239,232,.15);
+      border-bottom: 1px solid rgba(245,239,232,.15);
+      background: rgba(200,121,65,.06);
     }
 
     .stat-item {
@@ -325,22 +326,22 @@
       min-width: 120px;
       padding: 28px 20px;
       text-align: center;
-      border-right: 1px solid rgba(245,239,232,.04);
+      border-right: 1px solid rgba(245,239,232,.12);
     }
 
     .stat-item:last-child { border-right: none; }
 
     .stat-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 700;
-      color: var(--copper-light);
+      color: #f0a870;
       display: block;
       line-height: 1;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
-    .stat-label { font-size: .75rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+    .stat-label { font-size: .78rem; color: #c8bfd8; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
 
     /* ── SECTION LABELS ── */
     .s-label {
