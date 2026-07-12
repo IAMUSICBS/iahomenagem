@@ -539,7 +539,42 @@
 
     .price span { font-size: 1.9rem !important; font-weight: 700 !important; color: var(--copper-light) !important; vertical-align: baseline !important; }
 
+    .price-old {
+      font-size: 1rem;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+
+    .promo-badge {
+      display: inline-block;
+      background: #e53e3e;
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
     .price-note { font-size: .78rem; color: var(--muted); margin-bottom: 16px; }
+
+    /* ── PROMO BAR ── */
+    .promo-bar {
+      background: linear-gradient(90deg, #c0392b, #e74c3c);
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: .88rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .promo-bar span { font-weight: 800; text-decoration: underline; }
 
     /* ── PROMISE ── */
     #promessa { padding: 80px 24px; }
@@ -987,6 +1022,8 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 </head>
 <body>
+<!-- PROMO BAR -->
+<div class="promo-bar">🔥 MEGA PROMOÇÃO — <span>50% OFF</span> em todas as homenagens! Só por tempo limitado. Aproveite agora!</div>
 
 <canvas id="bg-canvas"></canvas>
 
@@ -1086,9 +1123,11 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
             <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Foto da pessoa inserida no vídeo</li>
             <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Entrega em até 2h via WhatsApp</li>
           </ul>
-          <div class="price">R$ 50<span>,00</span></div>
+          <div class="promo-badge">50% OFF</div>
+          <div class="price-old">De R$ 50,00</div>
+          <div class="price">R$ 25<span>,00</span></div>
           <p class="price-note">Pagamento via PIX após aprovação</p>
-          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20Simples%20-%20R$50" class="btn btn-green" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20Simples%20-%20R$25%20(promoção%2050%25%20OFF)" class="btn btn-green" target="_blank" rel="noopener noreferrer">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             Solicitar Homenagem
           </a>
@@ -1114,9 +1153,11 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
             <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Final emocionante com música</li>
             <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Entrega em até 2h via WhatsApp</li>
           </ul>
-          <div class="price">R$ 60<span>,00</span></div>
+          <div class="promo-badge">50% OFF</div>
+          <div class="price-old">De R$ 60,00</div>
+          <div class="price">R$ 30<span>,00</span></div>
           <p class="price-note">Pagamento via PIX após aprovação</p>
-          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20Completa%20-%20R$60" class="btn btn-green" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20Completa%20-%20R$30%20(promoção%2050%25%20OFF)" class="btn btn-green" target="_blank" rel="noopener noreferrer">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             Solicitar Homenagem
           </a>
@@ -1141,9 +1182,11 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
             <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Mensagem visual de amor e despedida</li>
             <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Entrega em até 2h via WhatsApp</li>
           </ul>
-          <div class="price">R$ 75<span>,00</span></div>
+          <div class="promo-badge">50% OFF</div>
+          <div class="price-old">De R$ 75,00</div>
+          <div class="price">R$ 37<span>,50</span></div>
           <p class="price-note">Pagamento via PIX após aprovação</p>
-          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Despedida%20Especial%20-%20R$75" class="btn btn-green" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Despedida%20Especial%20-%20R$37,50%20(promoção%2050%25%20OFF)" class="btn btn-green" target="_blank" rel="noopener noreferrer">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             Solicitar Homenagem
           </a>
@@ -1168,9 +1211,11 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
             <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Cena de reencontro entre elas</li>
             <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Entrega em até 2h via WhatsApp</li>
           </ul>
-          <div class="price">R$ 80<span>,00</span></div>
+          <div class="promo-badge">50% OFF</div>
+          <div class="price-old">De R$ 80,00</div>
+          <div class="price">R$ 40<span>,00</span></div>
           <p class="price-note">Pagamento via PIX após aprovação</p>
-          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20a%20Dois%20-%20R$80" class="btn btn-green" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20a%20Dois%20-%20R$40%20(promoção%2050%25%20OFF)" class="btn btn-green" target="_blank" rel="noopener noreferrer">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             Solicitar Homenagem
           </a>
@@ -1195,9 +1240,11 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
             <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Maior duração e mais momentos</li>
             <li><span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> Entrega em até 2h via WhatsApp</li>
           </ul>
-          <div class="price">R$ 80<span>,00</span></div>
+          <div class="promo-badge">50% OFF</div>
+          <div class="price-old">De R$ 80,00</div>
+          <div class="price">R$ 40<span>,00</span></div>
           <p class="price-note">Pagamento via PIX após aprovação</p>
-          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20de%20Encontro%20-%20R$80" class="btn btn-green" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Homenagem%20de%20Encontro%20-%20R$40%20(promoção%2050%25%20OFF)" class="btn btn-green" target="_blank" rel="noopener noreferrer">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             Solicitar Homenagem
           </a>
