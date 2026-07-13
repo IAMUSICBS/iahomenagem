@@ -1031,7 +1031,28 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
 </head>
 <body>
 <!-- PROMO BAR -->
-<div class="promo-bar">🔥 MEGA PROMOÇÃO — <span>50% OFF</span> em todas as homenagens! Só por tempo limitado. Aproveite agora!</div>
+<div class="promo-bar">🔥 MEGA PROMOÇÃO — <span>50% OFF</span> em todas as homenagens! Termina em: <span id="countdown" style="font-variant-numeric:tabular-nums;letter-spacing:.05em">00:00:00</span></div>
+<script>
+  (function(){
+    var key='promo_end';
+    var end=localStorage.getItem(key);
+    if(!end||Date.now()>+end){
+      end=Date.now()+24*60*60*1000;
+      localStorage.setItem(key,end);
+    }
+    function tick(){
+      var diff=+end-Date.now();
+      if(diff<=0){diff=0;}
+      var h=Math.floor(diff/3600000);
+      var m=Math.floor((diff%3600000)/60000);
+      var s=Math.floor((diff%60000)/1000);
+      var el=document.getElementById('countdown');
+      if(el) el.textContent=(h<10?'0'+h:h)+':'+(m<10?'0'+m:m)+':'+(s<10?'0'+s:s);
+    }
+    tick();
+    setInterval(tick,1000);
+  })();
+</script>
 
 <canvas id="bg-canvas"></canvas>
 
@@ -1048,9 +1069,13 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
   <p class="subtitle">Criamos homenagens em vídeo únicas e emocionantes para que você nunca esqueça quem partiu.</p>
 
   <div class="hero-actions">
-    <a href="#homenagens" class="btn btn-primary">Ver homenagens</a>
-    <a href="#como" class="btn btn-ghost">Como funciona</a>
+    <a href="https://wa.me/5531973387655?text=Olá!%20Vim%20pelo%20site%20Sempre%20Presente%20e%20quero%20mais%20informações%20sobre%20as%20homenagens%20em%20vídeo." class="btn btn-green" target="_blank" rel="noopener noreferrer" style="font-size:1.05rem;padding:14px 28px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" style="margin-right:8px;vertical-align:middle"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+      Quero minha homenagem agora
+    </a>
+    <a href="#homenagens" class="btn btn-ghost">Ver preços</a>
   </div>
+  <p style="font-size:.8rem;color:var(--muted);margin-top:8px;">✅ Entrega em até 2h · 💳 Pague só após aprovar · 🔒 100% seguro</p>
 
   <div class="hero-video-wrap" id="videoHero" onclick="playInline(this)">
     <video src="video-hero.mp4" preload="none" playsinline webkit-playsinline x5-playsinline loop poster="poster-hero.jpg" aria-label="Exemplo de homenagem em vídeo"></video>
@@ -1100,7 +1125,16 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
 
 <!-- ── URGENCY ── -->
 <div class="urgency-bar fade-up">
-  <p>⏳ <span>Agenda com vagas limitadas</span> — atendemos um número reduzido de pedidos por semana para garantir dedicação total a cada família. Reserve a sua com antecedência.</p>
+  <p>⏳ <span>Restam poucas vagas hoje</span> — <span id="vagas-count">3</span> pedidos disponíveis agora. Garanta o seu antes que acabe.</p>
+<script>
+  (function(){
+    var key='vagas_num';
+    var v=localStorage.getItem(key);
+    if(!v){v=Math.floor(Math.random()*3)+2;localStorage.setItem(key,v);}
+    var el=document.getElementById('vagas-count');
+    if(el) el.textContent=v;
+  })();
+</script>
 </div>
 
 <!-- ── PACKAGES ── -->
