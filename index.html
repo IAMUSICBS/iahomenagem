@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sempre Presente · Homenagens em Vídeo Personalizadas</title>
-  <meta name="description" content="Transforme a saudade em uma homenagem em vídeo única e emocionante. Entregamos em até 2h via WhatsApp. Mais de 600 famílias atendidas. A partir de R$50." />
+  <meta name="description" content="Transforme a saudade em uma homenagem em vídeo única e emocionante. Entregamos em até 2h via WhatsApp. Mais de 600 famílias atendidas. A partir de R$25." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://iahomenagem.com.br/" />
   <meta property="og:title" content="Sempre Presente · Homenagens em Vídeo" />
-  <meta property="og:description" content="Criamos homenagens em vídeo personalizadas para honrar quem você ama. Entrega em até 2h. A partir de R$50." />
+  <meta property="og:description" content="Criamos homenagens em vídeo personalizadas para honrar quem você ama. Entrega em até 2h. A partir de R$25." />
   <meta property="og:image" content="https://iahomenagem.com.br/poster-hero.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#07090f" />
@@ -1007,14 +1007,6 @@
   gtag('config', 'G-Y21HEMS63V');
   gtag('config', 'AW-18213792767');
 </script>
-<!-- Event snippet for Visualização de página conversion page -->
-<script>
-  gtag('event', 'conversion', {
-    'send_to': 'AW-18213792767/3tbICMXq_rgcEP_Xge1D',
-    'value': 1.0,
-    'currency': 'BRL'
-  });
-</script>
 <!-- End Google tag -->
 
 <!-- Meta Pixel Code -->
@@ -1711,6 +1703,21 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
     }
   }
 
+  // ── Google Ads conversion on WhatsApp click ──
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      exitShown = true; // não mostrar popup se já foi para o WA
+      clearTimeout(mobileTimer);
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18213792767/3tbICMXq_rgcEP_Xge1D',
+          'value': 1.0,
+          'currency': 'BRL'
+        });
+      }
+    });
+  });
+
   // ── Fade on scroll ──
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -1738,12 +1745,21 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
   document.body.insertAdjacentHTML('beforeend', popupHTML);
 
   let exitShown = false;
+  function showExitPopup() {
+    if (exitShown) return;
+    exitShown = true;
+    document.getElementById('exit-overlay').style.display = 'flex';
+  }
+
+  // Desktop: mouse leaving viewport top
   document.addEventListener('mouseleave', e => {
-    if (e.clientY <= 0 && !exitShown) {
-      exitShown = true;
-      document.getElementById('exit-overlay').style.display = 'flex';
-    }
+    if (e.clientY <= 0) showExitPopup();
   });
+
+  // Mobile: show after 35 seconds without clicking a WA button
+  var mobileTimer = setTimeout(function() {
+    if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) showExitPopup();
+  }, 35000);
 
   function closeExitPopup() {
     document.getElementById('exit-overlay').style.display = 'none';
