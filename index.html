@@ -244,7 +244,7 @@
     .hero-video-wrap {
       position: relative;
       width: 100%;
-      max-width: 260px;
+      max-width: 360px;
       margin: 52px auto 16px;
       border-radius: 16px;
       overflow: hidden;
@@ -1065,15 +1065,14 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
 <!-- ── HERO ── -->
 <section id="hero">
   <div class="eyebrow">Homenagem em Vídeo</div>
-  <h1>A memória de quem você ama<br><em>merece durar para sempre</em></h1>
-  <p class="subtitle">Criamos homenagens em vídeo únicas e emocionantes para que você nunca esqueça quem partiu.</p>
+  <h1>Transforme uma foto em uma<br><em>homenagem em vídeo emocionante</em></h1>
+  <p class="subtitle">Criamos homenagens em vídeo personalizadas com a foto de quem você ama. A partir de R$25. Entrega em até 2h via WhatsApp.</p>
 
   <div class="hero-actions">
-    <a href="https://wa.me/5531973387655?text=Olá!%20Vim%20pelo%20site%20Sempre%20Presente%20e%20quero%20mais%20informações%20sobre%20as%20homenagens%20em%20vídeo." class="btn btn-green" target="_blank" rel="noopener noreferrer" style="font-size:1.05rem;padding:14px 28px;">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" style="margin-right:8px;vertical-align:middle"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-      Quero minha homenagem agora
+    <a href="#homenagens" class="btn btn-green" style="font-size:1.05rem;padding:14px 28px;">
+      Ver homenagens a partir de R$25
     </a>
-    <a href="#homenagens" class="btn btn-ghost">Ver preços</a>
+    <a href="#como" class="btn btn-ghost">Como funciona</a>
   </div>
   <p style="font-size:.8rem;color:var(--muted);margin-top:8px;">✅ Entrega em até 2h · 💳 Pague só após aprovar · 🔒 100% seguro</p>
 
@@ -1106,6 +1105,20 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
   </div>
 </div>
 
+<!-- ── URGENCY ── -->
+<div class="urgency-bar fade-up">
+  <p>⏳ <span>Restam poucas vagas hoje</span> — <span id="vagas-count">3</span> pedidos disponíveis agora. Garanta o seu antes que acabe.</p>
+<script>
+  (function(){
+    var key='vagas_num';
+    var v=localStorage.getItem(key);
+    if(!v){v=Math.floor(Math.random()*3)+2;localStorage.setItem(key,v);}
+    var el=document.getElementById('vagas-count');
+    if(el) el.textContent=v;
+  })();
+</script>
+</div>
+
 <!-- ── WHO ── -->
 <section id="quem">
   <div class="container fade-up" style="text-align:center">
@@ -1123,19 +1136,36 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- ── URGENCY ── -->
-<div class="urgency-bar fade-up">
-  <p>⏳ <span>Restam poucas vagas hoje</span> — <span id="vagas-count">3</span> pedidos disponíveis agora. Garanta o seu antes que acabe.</p>
-<script>
-  (function(){
-    var key='vagas_num';
-    var v=localStorage.getItem(key);
-    if(!v){v=Math.floor(Math.random()*3)+2;localStorage.setItem(key,v);}
-    var el=document.getElementById('vagas-count');
-    if(el) el.textContent=v;
-  })();
-</script>
-</div>
+<!-- ── HOW IT WORKS (movido para antes dos pacotes) ── -->
+<section id="como">
+  <div class="container">
+    <div style="text-align:center" class="fade-up">
+      <span class="s-label">Simples e rápido</span>
+      <h2 class="s-title">Como funciona</h2>
+      <p class="s-sub">Em três passos simples, a homenagem da sua vida fica pronta.</p>
+    </div>
+    <div class="steps">
+      <div class="step fade-up">
+        <div class="step-num">01</div>
+        <h3>Escolha a homenagem</h3>
+        <p>Selecione o tipo de homenagem que melhor expressa o amor que você sente por quem partiu e clique em "Solicitar".</p>
+        <p class="step-detail">→ Você é direcionado direto ao WhatsApp</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">02</div>
+        <h3>Envie a foto e pague</h3>
+        <p>Mande uma foto da pessoa pelo WhatsApp. Após aprovação, o pagamento é feito via PIX — simples e seguro.</p>
+        <p class="step-detail">→ Pagamento só após ver o modelo</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">03</div>
+        <h3>Receba em até 2h</h3>
+        <p>Seu vídeo personalizado é entregue pelo próprio WhatsApp em até 2 horas, pronto para guardar e compartilhar.</p>
+        <p class="step-detail">→ Arquivo em MP4, qualidade total</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ── PACKAGES ── -->
 <section id="homenagens">
@@ -1226,9 +1256,9 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
           </ul>
           <div class="promo-badge">50% OFF</div>
           <div class="price-old">De R$ 75,00</div>
-          <div class="price">R$ 37<span>,50</span></div>
+          <div class="price">R$ 37<span>,00</span></div>
           <p class="price-note">Pagamento via PIX após aprovação</p>
-          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Despedida%20Especial%20-%20R$37,50%20(promoção%2050%25%20OFF)" class="btn btn-green" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20a%20Despedida%20Especial%20-%20R$37%20(promoção%2050%25%20OFF)" class="btn btn-green" target="_blank" rel="noopener noreferrer">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             Solicitar Homenagem
           </a>
@@ -1442,37 +1472,6 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- ── HOW IT WORKS ── -->
-<section id="como">
-  <div class="container">
-    <div style="text-align:center" class="fade-up">
-      <span class="s-label">Simples e rápido</span>
-      <h2 class="s-title">Como funciona</h2>
-      <p class="s-sub">Em três passos simples, a homenagem da sua vida fica pronta.</p>
-    </div>
-    <div class="steps">
-      <div class="step fade-up">
-        <div class="step-num">01</div>
-        <h3>Escolha a homenagem</h3>
-        <p>Selecione o tipo de homenagem que melhor expressa o amor que você sente por quem partiu e clique em "Solicitar".</p>
-        <p class="step-detail">→ Você é direcionado direto ao WhatsApp</p>
-      </div>
-      <div class="step fade-up">
-        <div class="step-num">02</div>
-        <h3>Envie a foto e pague</h3>
-        <p>Mande uma foto da pessoa pelo WhatsApp. Após aprovação, o pagamento é feito via PIX — simples e seguro.</p>
-        <p class="step-detail">→ Pagamento só após ver o modelo</p>
-      </div>
-      <div class="step fade-up">
-        <div class="step-num">03</div>
-        <h3>Receba em até 2h</h3>
-        <p>Seu vídeo personalizado é entregue pelo próprio WhatsApp em até 2 horas, pronto para guardar e compartilhar.</p>
-        <p class="step-detail">→ Arquivo em MP4, qualidade total</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ── FAQ ── -->
 <section id="faq">
   <div class="container">
@@ -1509,7 +1508,7 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
           <span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
         </button>
         <div class="faq-a" role="region">
-          <p>Em até <strong>24 horas</strong> após a confirmação do pagamento, seu vídeo é entregue pelo próprio WhatsApp.</p>
+          <p>Em até <strong>2 horas</strong> após a confirmação do pagamento, seu vídeo é entregue pelo próprio WhatsApp.</p>
         </div>
       </div>
 
@@ -1553,8 +1552,8 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
     <div class="guarantee-inner">
       <div class="guarantee-icon">🕊</div>
       <div class="guarantee-text">
-        <h3>Criado com amor e respeito</h3>
-        <p>Sabemos o quanto é difícil lidar com a saudade de quem partiu. Por isso, cada vídeo é produzido com profundo respeito, cuidado e delicadeza — porque a memória de quem você ama merece ser honrada da melhor forma possível.</p>
+        <h3>Garantia total de satisfação</h3>
+        <p>Sabemos o quanto é difícil lidar com a saudade de quem partiu. Por isso, cada vídeo é produzido com profundo respeito e cuidado. <strong>Se houver qualquer problema técnico no vídeo — refazemos gratuitamente.</strong> Você só paga após aprovar o resultado. Sem riscos, sem surpresas.</p>
       </div>
     </div>
   </div>
@@ -1566,9 +1565,11 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
     <span class="s-label" style="display:block;margin-bottom:14px">Uma lembrança para sempre</span>
     <h2>Transforme a saudade em uma <em>homenagem eterna</em></h2>
     <p>Uma simples fotografia pode se tornar a lembrança mais emocionante que sua família já viveu.</p>
-    <a href="https://wa.me/5531973387655?text=Olá!%20Quero%20solicitar%20minha%20homenagem" class="btn btn-primary" target="_blank" rel="noopener noreferrer" style="font-size:1rem;padding:16px 40px">
-      Criar minha homenagem agora
+    <a href="https://wa.me/5531973387655?text=Olá!%20Vim%20pelo%20site%20Sempre%20Presente%20e%20quero%20mais%20informações%20sobre%20as%20homenagens%20em%20vídeo." class="btn btn-green" target="_blank" rel="noopener noreferrer" style="font-size:1rem;padding:16px 40px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+      Quero minha homenagem agora
     </a>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:12px;">✅ Entrega em até 2h · 💳 Pague só após aprovar · 🔒 100% seguro</p>
   </div>
 </section>
 
