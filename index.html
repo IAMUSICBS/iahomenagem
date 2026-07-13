@@ -13,6 +13,40 @@
   <meta property="og:description" content="Criamos homenagens em vídeo personalizadas para honrar quem você ama. Entrega em até 2h. A partir de R$25." />
   <meta property="og:image" content="https://iahomenagem.com.br/poster-hero.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:locale" content="pt_BR" />
+  <link rel="canonical" href="https://iahomenagem.com.br/" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Sempre Presente — Homenagens em Vídeo",
+    "url": "https://iahomenagem.com.br/",
+    "description": "Criamos homenagens em vídeo personalizadas com a foto de quem você ama. Entrega em até 2h via WhatsApp. A partir de R$25.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Sempre Presente",
+      "url": "https://iahomenagem.com.br/",
+      "telephone": "+5531973387655",
+      "sameAs": [
+        "https://www.instagram.com/iahomenagens",
+        "https://www.facebook.com/share/1CLXRK8TRx/"
+      ]
+    },
+    "areaServed": { "@type": "Country", "name": "BR" },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "BRL",
+      "lowPrice": "25",
+      "highPrice": "40",
+      "offerCount": "5"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "600"
+    }
+  }
+  </script>
   <meta name="theme-color" content="#07090f" />
 
   <!-- Favicon SVG inline -->
@@ -92,7 +126,7 @@
     /* ── NAV ── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 42px; left: 0; right: 0;
       z-index: 100;
       padding: 18px 28px;
       display: flex;
@@ -988,6 +1022,8 @@
       .guarantee-inner { flex-direction: column; text-align: center; padding: 36px 24px; }
       .stat-item { min-width: 90px; padding: 20px 12px; }
       .promise-box { padding: 40px 24px; }
+      nav { top: 64px; }
+      #hero { padding-top: 160px; }
     }
   </style>
 <!-- Microsoft Clarity -->
@@ -1534,7 +1570,7 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
           <span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></span>
         </button>
         <div class="faq-a" role="region">
-          <p>Caso haja algum <strong>problema técnico no vídeo</strong> — como erro na foto ou falha na geração — entre em contato pelo WhatsApp e resolvemos. As homenagens são criadas com muito cuidado, e cada vídeo pode ter pequenas variações artísticas que fazem parte do processo criativo.</p>
+          <p>Sim. Se o resultado não ficar como esperado por qualquer problema — erro na foto, falha na geração, ou qualquer outra razão — <strong>refazemos gratuitamente</strong>. Você só paga após aprovar o resultado. Sem riscos.</p>
         </div>
       </div>
 
@@ -1630,7 +1666,7 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
   }
 
   function draw(t) {
-    if (!animRunning) return;
+    if (!animRunning || document.hidden) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => {
       p.y += p.vy;
@@ -1648,6 +1684,10 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
   initParticles();
   window.addEventListener('resize', () => { resize(); initParticles(); });
   if (animRunning) requestAnimationFrame(draw);
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && animRunning) requestAnimationFrame(draw);
+  });
 
   // ── Audio unlock ──
   let audioUnlocked = false;
@@ -1736,8 +1776,9 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
       <h2 style="color:#d4a843;font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:8px;">Antes de ir...</h2>
       <p style="color:#c8c0d8;font-size:.92rem;margin-bottom:20px;line-height:1.6;">Receba um <strong style="color:#d4a843;">exemplo gratuito</strong> de homenagem direto no seu WhatsApp e veja como fica emocionante.</p>
       <input id="exit-nome" type="text" placeholder="Seu nome" style="width:100%;box-sizing:border-box;padding:12px;border-radius:8px;border:1px solid #b8860b;background:#0d0b14;color:#fff;margin-bottom:10px;font-size:.95rem;">
-      <input id="exit-wpp" type="tel" placeholder="WhatsApp (com DDD)" style="width:100%;box-sizing:border-box;padding:12px;border-radius:8px;border:1px solid #b8860b;background:#0d0b14;color:#fff;margin-bottom:16px;font-size:.95rem;">
+      <input id="exit-wpp" type="tel" placeholder="WhatsApp com DDD (ex: 31999990000)" style="width:100%;box-sizing:border-box;padding:12px;border-radius:8px;border:1px solid #b8860b;background:#0d0b14;color:#fff;margin-bottom:16px;font-size:.95rem;">
       <button onclick="submitExitLead()" style="width:100%;padding:13px;background:#25D366;border:none;border-radius:8px;color:#fff;font-size:1rem;font-weight:700;cursor:pointer;">📲 Quero receber o exemplo!</button>
+      <p style="margin-top:8px;font-size:.72rem;color:#888;line-height:1.5;">Ao enviar, você concorda que usaremos seu WhatsApp exclusivamente para enviar o exemplo gratuito de homenagem, conforme a LGPD.</p>
       <p id="exit-msg" style="margin-top:10px;font-size:.85rem;color:#d4a843;display:none;">✅ Recebido! Entraremos em contato em breve.</p>
     </div>
   </div>`;
@@ -1767,8 +1808,9 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
 
   function submitExitLead() {
     const nome = document.getElementById('exit-nome').value.trim();
-    const whatsapp = document.getElementById('exit-wpp').value.trim();
+    const whatsapp = document.getElementById('exit-wpp').value.trim().replace(/\D/g,'');
     if (!nome || !whatsapp) { alert('Preencha nome e WhatsApp!'); return; }
+    if (whatsapp.length < 10 || whatsapp.length > 11) { alert('WhatsApp inválido. Use DDD + número (ex: 31999990000)'); return; }
     const xhr = new XMLHttpRequest();
     xhr.open('POST', SCRIPT_URL, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
