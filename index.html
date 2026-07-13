@@ -655,7 +655,9 @@
       display: flex; align-items: center; justify-content: center;
       font-size: .8rem; font-weight: 700; color: #fff;
       flex-shrink: 0;
+      overflow: hidden;
     }
+    .wa-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     .wa-header-info { flex: 1; min-width: 0; }
     .wa-name { font-size: .76rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -1352,10 +1354,11 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
 
     <div class="testi-track">
 
+      <!-- Depoimento 1: Rosângela -->
       <div class="wa-mock">
         <div class="wa-header">
-          <div class="wa-avatar">R</div>
-          <div class="wa-header-info"><div class="wa-name">Rosângela</div><div class="wa-status">online agora</div></div>
+          <div class="wa-avatar"><img src="https://i.pravatar.cc/40?img=47" alt="Rosângela" loading="lazy"></div>
+          <div class="wa-header-info"><div class="wa-name">Rosângela M.</div><div class="wa-status">online agora</div></div>
           <div class="wa-header-icons">
             <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
@@ -1366,14 +1369,15 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
           <div class="wa-bubble sent">
             <div class="wa-video-thumb" style="background-image:url('poster-despedida.jpg')">
               <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-              <span class="vid-label">Sua homenagem chegou 🎞</span>
+              <span class="vid-label">Homenagem prontinha 🎞</span>
               <span class="vid-duration">0:45</span>
             </div>
-            Sua homenagem ficou pronta! 🎞<br>Espero que traga conforto ao coração 🤍
+            Rosângela, sua homenagem ficou pronta 🎞<br>Espero que traga muito conforto 🤍
             <span class="wa-time">09:16<svg class="wa-check" viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34-2.83-2.83L6 10.52l4.24 4.24L18 7zm-8 9l-4.24-4.24-1.41 1.41L10 18.83 21.41 7.41 20 6l-10 10z"/></svg></span>
           </div>
-          <div class="wa-bubble recv">Meu Deus… eu não esperava que fosse tão lindo assim 😭<span class="wa-time">09:24</span></div>
-          <div class="wa-bubble recv">Quando apareceu minha mãe no vídeo a família toda chorou junto. Muito obrigada mesmo 🙏<span class="wa-time">09:31</span></div>
+          <div class="wa-bubble recv">meu deus… 😭😭<span class="wa-time">09:18</span></div>
+          <div class="wa-bubble recv">to sem palavras. minha familia toda chorou quando apareceu ela no video<span class="wa-time">09:23</span></div>
+          <div class="wa-bubble recv">muito obrigada de verdade, nao esperava ficar tao lindo 🙏🙏<span class="wa-time">09:25</span></div>
         </div>
         <div class="wa-footer">
           <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
@@ -1382,28 +1386,30 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
         </div>
       </div>
 
+      <!-- Depoimento 2: Cleide -->
       <div class="wa-mock">
         <div class="wa-header">
-          <div class="wa-avatar">C</div>
-          <div class="wa-header-info"><div class="wa-name">Cleide</div><div class="wa-status">visto às 22:04</div></div>
+          <div class="wa-avatar"><img src="https://i.pravatar.cc/40?img=44" alt="Cleide" loading="lazy"></div>
+          <div class="wa-header-info"><div class="wa-name">Cleide A.</div><div class="wa-status">visto às 22:04</div></div>
           <div class="wa-header-icons">
             <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
           </div>
         </div>
         <div class="wa-body">
-          <div class="wa-date-divider">Hoje</div>
+          <div class="wa-date-divider">Ontem</div>
           <div class="wa-bubble sent">
             <div class="wa-video-thumb" style="background-image:url('poster-completa.jpg')">
               <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
               <span class="vid-label">Homenagem entregue 💛</span>
-              <span class="vid-duration">0:25</span>
+              <span class="vid-duration">0:30</span>
             </div>
-            Homenagem entregue com muito amor 💛<br>Que ele descanse em paz 🕊
+            Cleide, homenagem entregue com muito amor 💛<br>Que ele descanse em paz 🕊
             <span class="wa-time">21:50<svg class="wa-check" viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34-2.83-2.83L6 10.52l4.24 4.24L18 7zm-8 9l-4.24-4.24-1.41 1.41L10 18.83 21.41 7.41 20 6l-10 10z"/></svg></span>
           </div>
-          <div class="wa-bubble recv">Não tenho nem palavras… que trabalho lindo ❤️<span class="wa-time">21:57</span></div>
-          <div class="wa-bubble recv">Chorei do início ao fim. Valeu cada centavo, obrigada de coração 🙏<span class="wa-time">21:59</span></div>
+          <div class="wa-bubble recv">Que lindo meu Deus, chorei muito assistindo ❤️<span class="wa-time">21:54</span></div>
+          <div class="wa-bubble recv">valeu cada centavo. obrigada de coração, ficou perfeito 🙏<span class="wa-time">21:58</span></div>
+          <div class="wa-bubble sent" style="font-size:.68rem">Fico muito feliz Cleide 🤍 Qualquer coisa estou aqui!<span class="wa-time">22:01<svg class="wa-check" viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34-2.83-2.83L6 10.52l4.24 4.24L18 7zm-8 9l-4.24-4.24-1.41 1.41L10 18.83 21.41 7.41 20 6l-10 10z"/></svg></span></div>
         </div>
         <div class="wa-footer">
           <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
@@ -1412,28 +1418,30 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
         </div>
       </div>
 
+      <!-- Depoimento 3: Vanessa -->
       <div class="wa-mock">
         <div class="wa-header">
-          <div class="wa-avatar">V</div>
-          <div class="wa-header-info"><div class="wa-name">Vanessa</div><div class="wa-status">online agora</div></div>
+          <div class="wa-avatar"><img src="https://i.pravatar.cc/40?img=23" alt="Vanessa" loading="lazy"></div>
+          <div class="wa-header-info"><div class="wa-name">Vanessa L.</div><div class="wa-status">online agora</div></div>
           <div class="wa-header-icons">
             <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
           </div>
         </div>
         <div class="wa-body">
-          <div class="wa-date-divider">Hoje</div>
+          <div class="wa-date-divider">10/07</div>
           <div class="wa-bubble sent">
             <div class="wa-video-thumb" style="background-image:url('poster-simples.jpg')">
               <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
               <span class="vid-label">Memória guardada para sempre ✨</span>
               <span class="vid-duration">0:38</span>
             </div>
-            Sua memória está guardada para sempre ✨<br>Fiz com muito cuidado pra você 🤍
+            Vanessa, memória guardada para sempre ✨<br>Fiz com muito cuidado pra vc 🤍
             <span class="wa-time">21:33<svg class="wa-check" viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34-2.83-2.83L6 10.52l4.24 4.24L18 7zm-8 9l-4.24-4.24-1.41 1.41L10 18.83 21.41 7.41 20 6l-10 10z"/></svg></span>
           </div>
-          <div class="wa-bubble recv">Ficou igualzinha a minha filha, parece ela de verdade 😭<span class="wa-time">21:45</span></div>
-          <div class="wa-bubble recv">Já indiquei pra três pessoas aqui da família. Serviço maravilhoso! 🙏🏼<span class="wa-time">21:47</span></div>
+          <div class="wa-bubble recv">ficou igualzinha a ela!! to chorando aqui 😭😭<span class="wa-time">21:40</span></div>
+          <div class="wa-bubble recv">ja mandei pro meu irmão tbm, ele amou. vou indicar pra todo mundo daqui da familia<span class="wa-time">21:43</span></div>
+          <div class="wa-bubble recv">serviço maravilhoso mesmo, muito obg 🙏🏼<span class="wa-time">21:44</span></div>
         </div>
         <div class="wa-footer">
           <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
@@ -1442,10 +1450,11 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
         </div>
       </div>
 
+      <!-- Depoimento 4: Fernanda -->
       <div class="wa-mock">
         <div class="wa-header">
-          <div class="wa-avatar">F</div>
-          <div class="wa-header-info"><div class="wa-name">Fernanda</div><div class="wa-status">online agora</div></div>
+          <div class="wa-avatar"><img src="https://i.pravatar.cc/40?img=25" alt="Fernanda" loading="lazy"></div>
+          <div class="wa-header-info"><div class="wa-name">Fernanda C.</div><div class="wa-status">online agora</div></div>
           <div class="wa-header-icons">
             <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
@@ -1459,11 +1468,12 @@ src="https://www.facebook.com/tr?id=987989720803245&ev=PageView&noscript=1"
               <span class="vid-label">Homenagem especial prontinha 🌹</span>
               <span class="vid-duration">0:52</span>
             </div>
-            Homenagem especial prontinha 🌹<br>Que seja uma lembrança eterna pra vocês 🤍
+            Fernanda, homenagem especial prontinha 🌹<br>Que seja uma lembrança eterna pra vocês 🤍
             <span class="wa-time">18:44<svg class="wa-check" viewBox="0 0 24 24"><path d="M18 7l-1.41-1.41-6.34 6.34-2.83-2.83L6 10.52l4.24 4.24L18 7zm-8 9l-4.24-4.24-1.41 1.41L10 18.83 21.41 7.41 20 6l-10 10z"/></svg></span>
           </div>
-          <div class="wa-bubble recv">Assistiu com meu pai e os dois ficaram sem fala 😭❤️<span class="wa-time">18:52</span></div>
-          <div class="wa-bubble recv">Nunca vi meu pai chorar assim. Que presente lindo, obrigada! ⭐⭐⭐⭐⭐<span class="wa-time">18:55</span></div>
+          <div class="wa-bubble recv">Meu pai assistiu comigo agora e os dois ficamos sem fala 😭❤️<span class="wa-time">18:50</span></div>
+          <div class="wa-bubble recv">Nunca vi ele chorar assim na vida. Que presente lindo obg!! ⭐⭐⭐⭐⭐<span class="wa-time">18:53</span></div>
+          <div class="wa-bubble recv">com certeza vou fazer de novo no dia das maes<span class="wa-time">18:55</span></div>
         </div>
         <div class="wa-footer">
           <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
