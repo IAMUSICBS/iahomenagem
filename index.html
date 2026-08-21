@@ -246,9 +246,11 @@
 
     .how-step {
       display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 18px 24px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      padding: 20px 24px;
     }
 
     .how-step:not(:last-child) {
@@ -268,6 +270,11 @@
       justify-content: center;
       flex-shrink: 0;
       margin-top: 2px;
+    }
+
+    .how-text {
+      text-align: center;
+      flex: 1;
     }
 
     .how-text strong {
