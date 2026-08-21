@@ -236,66 +236,35 @@
       margin: 40px 0;
     }
 
-    /* ── HOW IT WORKS ── */
-    .section-title {
-      font-family: Georgia, serif;
-      font-size: 24px;
-      text-align: center;
-      margin-bottom: 20px;
-      color: var(--text);
-    }
-
-    .how-card {
+    /* ── HOW IT WORKS (compact) ── */
+    .how-compact {
       background: var(--card);
-      border-radius: 18px;
-      padding: 8px 0;
+      border-radius: 16px;
+      padding: 18px 24px;
       box-shadow: 0 2px 16px rgba(0,0,0,.06);
+      margin-top: 28px;
     }
 
-    .how-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 10px;
-      padding: 20px 24px;
-    }
-
-    .how-step:not(:last-child) {
-      border-bottom: 1px solid var(--border);
-    }
-
-    .how-num {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--gold-mid);
-      color: #fff;
-      font-size: 14px;
+    .how-compact-title {
+      font-size: 11px;
       font-weight: 700;
+      letter-spacing: 1.6px;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .how-compact-item {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .how-text {
-      text-align: center;
-      flex: 1;
-    }
-
-    .how-text strong {
-      display: block;
+      gap: 10px;
       font-size: 15px;
-      margin-bottom: 3px;
       color: var(--text);
+      padding: 8px 0;
     }
 
-    .how-text p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.5;
+    .how-compact-item:not(:last-child) {
+      border-bottom: 1px solid var(--border);
     }
 
     /* ── TESTIMONIALS ── */
@@ -634,36 +603,12 @@
     <p class="social-proof">⭐ 4.9 · +600 famílias já preservaram suas memórias</p>
     <p class="trust">🛡️ Entregamos em até 24h. Você só paga se gostar.</p>
 
-    <hr class="divider" />
-
-    <!-- Como funciona -->
-    <h2 class="section-title fade-up">Como funciona</h2>
-    <div class="how-card fade-up">
-      <div class="how-step">
-        <div class="how-num">1</div>
-        <div class="how-text">
-          <strong>Envie a foto</strong>
-          <p>Manda pelo WhatsApp uma foto clara da pessoa que quer homenagear.</p>
-        </div>
-      </div>
-      <div class="how-step">
-        <div class="how-num">2</div>
-        <div class="how-text">
-          <strong>Criamos o vídeo</strong>
-          <p>Nossa IA transforma a foto em um vídeo com movimento, música e muita emoção.</p>
-        </div>
-      </div>
-      <div class="how-step">
-        <div class="how-num">3</div>
-        <div class="how-text">
-          <strong>Receba e aprove</strong>
-          <p>Você recebe em até 24h e só paga se gostar. Sem risco nenhum.</p>
-        </div>
-      </div>
+    <div class="how-compact fade-up">
+      <p class="how-compact-title">COMO FUNCIONA?</p>
+      <div class="how-compact-item"><span>🤍</span> 1. Responda 3 perguntas curtas.</div>
+      <div class="how-compact-item"><span>🖼️</span> 2. Envie uma foto especial.</div>
+      <div class="how-compact-item"><span>▶️</span> 3. Receba seu vídeo em até 24h.</div>
     </div>
-
-    <button class="cta-btn fade-up" style="margin-top: 32px;" onclick="startQuiz()">QUERO CRIAR AGORA 🤍</button>
-    <p class="cta-sub">A partir de R$50 · Entrega em até 24h</p>
 
   </section>
 
